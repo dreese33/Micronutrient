@@ -1,1 +1,2 @@
 # Micronutrient
+This will be a project dedicated to the generation of foods from micronutrient data. It will pull information in from FoodData Central, and use this data to provide users with accurrate information about their diet. The app will then identify which vitamins and minerals the user is lacking based on their diet, and will suggest the food that will best suit their needs. The app will also provide a list of foods that will help the user satisfy their daily needs. 
