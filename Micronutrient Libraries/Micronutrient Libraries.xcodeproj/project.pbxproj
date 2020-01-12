@@ -1,0 +1,612 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8B87735523CAA50700FA6EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87735423CAA50700FA6EBE /* AppDelegate.swift */; };
+		8B87735723CAA50700FA6EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87735623CAA50700FA6EBE /* SceneDelegate.swift */; };
+		8B87735923CAA50700FA6EBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87735823CAA50700FA6EBE /* ViewController.swift */; };
+		8B87735C23CAA50700FA6EBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B87735A23CAA50700FA6EBE /* Main.storyboard */; };
+		8B87735F23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B87735D23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodeld */; };
+		8B87736123CAA50800FA6EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B87736023CAA50800FA6EBE /* Assets.xcassets */; };
+		8B87736423CAA50800FA6EBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B87736223CAA50800FA6EBE /* LaunchScreen.storyboard */; };
+		8B87736F23CAA50800FA6EBE /* Micronutrient_LibrariesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87736E23CAA50800FA6EBE /* Micronutrient_LibrariesTests.swift */; };
+		8B87737A23CAA50800FA6EBE /* Micronutrient_LibrariesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87737923CAA50800FA6EBE /* Micronutrient_LibrariesUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8B87736B23CAA50800FA6EBE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B87734923CAA50700FA6EBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B87735023CAA50700FA6EBE;
+			remoteInfo = "Micronutrient Libraries";
+		};
+		8B87737623CAA50800FA6EBE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B87734923CAA50700FA6EBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B87735023CAA50700FA6EBE;
+			remoteInfo = "Micronutrient Libraries";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8B87735123CAA50700FA6EBE /* Micronutrient Libraries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Micronutrient Libraries.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B87735423CAA50700FA6EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8B87735623CAA50700FA6EBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8B87735823CAA50700FA6EBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8B87735B23CAA50700FA6EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8B87735E23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Micronutrient_Libraries.xcdatamodel; sourceTree = "<group>"; };
+		8B87736023CAA50800FA6EBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8B87736323CAA50800FA6EBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8B87736523CAA50800FA6EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B87736A23CAA50800FA6EBE /* Micronutrient LibrariesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Micronutrient LibrariesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B87736E23CAA50800FA6EBE /* Micronutrient_LibrariesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Micronutrient_LibrariesTests.swift; sourceTree = "<group>"; };
+		8B87737023CAA50800FA6EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B87737523CAA50800FA6EBE /* Micronutrient LibrariesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Micronutrient LibrariesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B87737923CAA50800FA6EBE /* Micronutrient_LibrariesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Micronutrient_LibrariesUITests.swift; sourceTree = "<group>"; };
+		8B87737B23CAA50800FA6EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8B87734E23CAA50700FA6EBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B87736723CAA50800FA6EBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B87737223CAA50800FA6EBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8B87734823CAA50700FA6EBE = {
+			isa = PBXGroup;
+			children = (
+				8B87735323CAA50700FA6EBE /* Micronutrient Libraries */,
+				8B87736D23CAA50800FA6EBE /* Micronutrient LibrariesTests */,
+				8B87737823CAA50800FA6EBE /* Micronutrient LibrariesUITests */,
+				8B87735223CAA50700FA6EBE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8B87735223CAA50700FA6EBE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8B87735123CAA50700FA6EBE /* Micronutrient Libraries.app */,
+				8B87736A23CAA50800FA6EBE /* Micronutrient LibrariesTests.xctest */,
+				8B87737523CAA50800FA6EBE /* Micronutrient LibrariesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8B87735323CAA50700FA6EBE /* Micronutrient Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				8B87735423CAA50700FA6EBE /* AppDelegate.swift */,
+				8B87735623CAA50700FA6EBE /* SceneDelegate.swift */,
+				8B87735823CAA50700FA6EBE /* ViewController.swift */,
+				8B87735A23CAA50700FA6EBE /* Main.storyboard */,
+				8B87736023CAA50800FA6EBE /* Assets.xcassets */,
+				8B87736223CAA50800FA6EBE /* LaunchScreen.storyboard */,
+				8B87736523CAA50800FA6EBE /* Info.plist */,
+				8B87735D23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodeld */,
+			);
+			path = "Micronutrient Libraries";
+			sourceTree = "<group>";
+		};
+		8B87736D23CAA50800FA6EBE /* Micronutrient LibrariesTests */ = {
+			isa = PBXGroup;
+			children = (
+				8B87736E23CAA50800FA6EBE /* Micronutrient_LibrariesTests.swift */,
+				8B87737023CAA50800FA6EBE /* Info.plist */,
+			);
+			path = "Micronutrient LibrariesTests";
+			sourceTree = "<group>";
+		};
+		8B87737823CAA50800FA6EBE /* Micronutrient LibrariesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8B87737923CAA50800FA6EBE /* Micronutrient_LibrariesUITests.swift */,
+				8B87737B23CAA50800FA6EBE /* Info.plist */,
+			);
+			path = "Micronutrient LibrariesUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8B87735023CAA50700FA6EBE /* Micronutrient Libraries */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B87737E23CAA50800FA6EBE /* Build configuration list for PBXNativeTarget "Micronutrient Libraries" */;
+			buildPhases = (
+				8B87734D23CAA50700FA6EBE /* Sources */,
+				8B87734E23CAA50700FA6EBE /* Frameworks */,
+				8B87734F23CAA50700FA6EBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Micronutrient Libraries";
+			productName = "Micronutrient Libraries";
+			productReference = 8B87735123CAA50700FA6EBE /* Micronutrient Libraries.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8B87736923CAA50800FA6EBE /* Micronutrient LibrariesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B87738123CAA50800FA6EBE /* Build configuration list for PBXNativeTarget "Micronutrient LibrariesTests" */;
+			buildPhases = (
+				8B87736623CAA50800FA6EBE /* Sources */,
+				8B87736723CAA50800FA6EBE /* Frameworks */,
+				8B87736823CAA50800FA6EBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B87736C23CAA50800FA6EBE /* PBXTargetDependency */,
+			);
+			name = "Micronutrient LibrariesTests";
+			productName = "Micronutrient LibrariesTests";
+			productReference = 8B87736A23CAA50800FA6EBE /* Micronutrient LibrariesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8B87737423CAA50800FA6EBE /* Micronutrient LibrariesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B87738423CAA50800FA6EBE /* Build configuration list for PBXNativeTarget "Micronutrient LibrariesUITests" */;
+			buildPhases = (
+				8B87737123CAA50800FA6EBE /* Sources */,
+				8B87737223CAA50800FA6EBE /* Frameworks */,
+				8B87737323CAA50800FA6EBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B87737723CAA50800FA6EBE /* PBXTargetDependency */,
+			);
+			name = "Micronutrient LibrariesUITests";
+			productName = "Micronutrient LibrariesUITests";
+			productReference = 8B87737523CAA50800FA6EBE /* Micronutrient LibrariesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8B87734923CAA50700FA6EBE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = ReeseGames;
+				TargetAttributes = {
+					8B87735023CAA50700FA6EBE = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					8B87736923CAA50800FA6EBE = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 8B87735023CAA50700FA6EBE;
+					};
+					8B87737423CAA50800FA6EBE = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 8B87735023CAA50700FA6EBE;
+					};
+				};
+			};
+			buildConfigurationList = 8B87734C23CAA50700FA6EBE /* Build configuration list for PBXProject "Micronutrient Libraries" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8B87734823CAA50700FA6EBE;
+			productRefGroup = 8B87735223CAA50700FA6EBE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8B87735023CAA50700FA6EBE /* Micronutrient Libraries */,
+				8B87736923CAA50800FA6EBE /* Micronutrient LibrariesTests */,
+				8B87737423CAA50800FA6EBE /* Micronutrient LibrariesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8B87734F23CAA50700FA6EBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B87736423CAA50800FA6EBE /* LaunchScreen.storyboard in Resources */,
+				8B87736123CAA50800FA6EBE /* Assets.xcassets in Resources */,
+				8B87735C23CAA50700FA6EBE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B87736823CAA50800FA6EBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B87737323CAA50800FA6EBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8B87734D23CAA50700FA6EBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B87735923CAA50700FA6EBE /* ViewController.swift in Sources */,
+				8B87735523CAA50700FA6EBE /* AppDelegate.swift in Sources */,
+				8B87735723CAA50700FA6EBE /* SceneDelegate.swift in Sources */,
+				8B87735F23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B87736623CAA50800FA6EBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B87736F23CAA50800FA6EBE /* Micronutrient_LibrariesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B87737123CAA50800FA6EBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B87737A23CAA50800FA6EBE /* Micronutrient_LibrariesUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8B87736C23CAA50800FA6EBE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B87735023CAA50700FA6EBE /* Micronutrient Libraries */;
+			targetProxy = 8B87736B23CAA50800FA6EBE /* PBXContainerItemProxy */;
+		};
+		8B87737723CAA50800FA6EBE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B87735023CAA50700FA6EBE /* Micronutrient Libraries */;
+			targetProxy = 8B87737623CAA50800FA6EBE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8B87735A23CAA50700FA6EBE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B87735B23CAA50700FA6EBE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8B87736223CAA50800FA6EBE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B87736323CAA50800FA6EBE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8B87737C23CAA50800FA6EBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8B87737D23CAA50800FA6EBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8B87737F23CAA50800FA6EBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NC7C453YSR;
+				INFOPLIST_FILE = "Micronutrient Libraries/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ReeseGames.Micronutrient-Libraries";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8B87738023CAA50800FA6EBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NC7C453YSR;
+				INFOPLIST_FILE = "Micronutrient Libraries/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ReeseGames.Micronutrient-Libraries";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8B87738223CAA50800FA6EBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NC7C453YSR;
+				INFOPLIST_FILE = "Micronutrient LibrariesTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ReeseGames.Micronutrient-LibrariesTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Micronutrient Libraries.app/Micronutrient Libraries";
+			};
+			name = Debug;
+		};
+		8B87738323CAA50800FA6EBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NC7C453YSR;
+				INFOPLIST_FILE = "Micronutrient LibrariesTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ReeseGames.Micronutrient-LibrariesTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Micronutrient Libraries.app/Micronutrient Libraries";
+			};
+			name = Release;
+		};
+		8B87738523CAA50800FA6EBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NC7C453YSR;
+				INFOPLIST_FILE = "Micronutrient LibrariesUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ReeseGames.Micronutrient-LibrariesUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Micronutrient Libraries";
+			};
+			name = Debug;
+		};
+		8B87738623CAA50800FA6EBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NC7C453YSR;
+				INFOPLIST_FILE = "Micronutrient LibrariesUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ReeseGames.Micronutrient-LibrariesUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Micronutrient Libraries";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8B87734C23CAA50700FA6EBE /* Build configuration list for PBXProject "Micronutrient Libraries" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B87737C23CAA50800FA6EBE /* Debug */,
+				8B87737D23CAA50800FA6EBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B87737E23CAA50800FA6EBE /* Build configuration list for PBXNativeTarget "Micronutrient Libraries" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B87737F23CAA50800FA6EBE /* Debug */,
+				8B87738023CAA50800FA6EBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B87738123CAA50800FA6EBE /* Build configuration list for PBXNativeTarget "Micronutrient LibrariesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B87738223CAA50800FA6EBE /* Debug */,
+				8B87738323CAA50800FA6EBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B87738423CAA50800FA6EBE /* Build configuration list for PBXNativeTarget "Micronutrient LibrariesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B87738523CAA50800FA6EBE /* Debug */,
+				8B87738623CAA50800FA6EBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8B87735D23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B87735E23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodel */,
+			);
+			currentVersion = 8B87735E23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodel */;
+			path = Micronutrient_Libraries.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8B87734923CAA50700FA6EBE /* Project object */;
+}
