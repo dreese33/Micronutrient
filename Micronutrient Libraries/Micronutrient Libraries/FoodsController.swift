@@ -10,27 +10,32 @@ import UIKit
 
 class FoodsController: UITableViewController {
     
+    //Upper bound value for table
+    public static var tableUpperBound: Int = 5
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var key: String?
-        
-        if let path = Bundle.main.path(forResource: "key", ofType: "txt") {
-            do {
-                let data = try String(contentsOfFile: path, encoding: .utf8)
-                let myStrings = data.components(separatedBy: .newlines)
-                key = myStrings[0]
-            } catch {
-                print(error)
-            }
-        } else {
-            print("Failed")
+        let api = FoodsApi()
+        api.getSearchId() { (ids) in
+            print(ids)
         }
         
-        print(key!)
+        //api.foodSearchRequest(food: "Corn on the Cob") { (data) in
+        //    print(data)
+        //}
         
-        let api = FoodsApi(key: key!)
-        api.foodSearchRequest(food: "Corn on the Cob")
-        api.foodDataRequest(fdcId: "559734")
+        
+        /* How to make requests
+        api.foodDataRequest(fdcId: "559734") { (data) in
+            print(data)
+        }
+        */
+        
+        
+        //Setup tableUpperBounds variable
     }
+    
+    
 }

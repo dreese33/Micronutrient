@@ -17,10 +17,10 @@ class FoodsApi {
     
     var apiKey = "api_key="
     
-    init(key: String) {
+    init() {
         print("Api Object Initialized")
         currentUrl = constructBasicURL()
-        apiKey = apiKey + key
+        apiKey = apiKey + getFoodApiKey()
     }
     
     /*
@@ -66,6 +66,33 @@ class FoodsApi {
     }
     
     /*
+     * Get the search ID associated with a specific food item
+     *
+     */
+    func getSearchId(_ completion: @escaping ([Int]) -> ()) {
+        foodSearchRequest(food: "Corn on the Cob") { (data) in
+
+            var fdcIds: [Int] = []
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    if let values = json["foods"] as? NSArray {
+                        for i in 0...FoodsController.tableUpperBound - 1 {
+                            let value = values[i] as! NSDictionary
+                            fdcIds.append(value.object(forKey: "fdcId")! as! Int)
+                        }
+                        completion(fdcIds)
+                    } else {
+                        print("Error parsing search response JSON")
+                    }
+                }
+            } catch {
+                print("JSONSerialization error:", error)
+            }
+        }
+    }
+    
+    /*
      * Search USDA Database for specified food item
      *
      * Parameters:
@@ -75,7 +102,7 @@ class FoodsApi {
      *
      * Returns: JSON response containing food data
      */
-    func foodSearchRequest(food: String) {
+    func foodSearchRequest(food: String, completion: @escaping (Data) -> ()) {
         let url = URL(string: constructSearchURL(searchVal: food))!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -89,7 +116,7 @@ class FoodsApi {
                     print("statusCode: \(response.statusCode)")
                 }
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("data: \(dataString)")
+                    completion(data)
                 }
             }
         }
@@ -108,7 +135,7 @@ class FoodsApi {
      *
      * Returns: JSON containing data on a specific food item selected
      */
-    func foodDataRequest(fdcId: String) {
+    func foodDataRequest(fdcId: String, completion: @escaping (Data) -> ()) {
         let url = URL(string: constructDataURL(foodId: fdcId))!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -121,11 +148,36 @@ class FoodsApi {
                     print("statusCode: \(response.statusCode)")
                 }
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("data: \(dataString)")
+                    completion(data)
                 }
             }
         }
         
         task.resume()
+    }
+    
+    /*
+    * Gets api key from ignored file
+    *
+    * Throws:
+    *
+    * Returns: USDA FoodData Central API Key, empty string if not found
+    */
+    func getFoodApiKey() -> String {
+        var key: String = ""
+        
+        if let path = Bundle.main.path(forResource: "key", ofType: "txt") {
+            do {
+                let data = try String(contentsOfFile: path, encoding: .utf8)
+                let myStrings = data.components(separatedBy: .newlines)
+                key = myStrings[0]
+            } catch {
+                print(error)
+            }
+        } else {
+            print("Failed")
+        }
+        
+        return key
     }
 }
