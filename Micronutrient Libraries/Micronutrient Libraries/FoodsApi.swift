@@ -28,7 +28,7 @@ class FoodsApi {
      *
      * Returns: USDA's FoodData Central endpoint with current version
      */
-    func constructBasicURL() -> String {
+    private func constructBasicURL() -> String {
         return urlBase + "\(urlVersion)" + "/"
     }
     
@@ -40,7 +40,7 @@ class FoodsApi {
      *
      * Returns: USDA REST API endpoint for food search
      */
-    func constructSearchURL(searchVal: String) -> String {
+    private func constructSearchURL(searchVal: String) -> String {
         return currentUrl! + "search?" + apiKey + "&generalSearchInput=" + searchVal.replacingOccurrences(of: " ", with: space)
     }
     
@@ -52,7 +52,7 @@ class FoodsApi {
      *
      * Returns: USDA REST API endpoint for food data
      */
-    func constructDataURL(foodId: String) -> String {
+    private func constructDataURL(foodId: String) -> String {
         return currentUrl! + foodId + "?" + apiKey
     }
     
@@ -61,7 +61,7 @@ class FoodsApi {
      * Resets the URL to the base
      *
      */
-    func resetUrl() {
+    private func resetUrl() {
         currentUrl = urlBase
     }
     
@@ -69,8 +69,8 @@ class FoodsApi {
      * Get the search ID associated with a specific food item
      *
      */
-    func getSearchId(_ completion: @escaping ([Int]) -> ()) {
-        foodSearchRequest(food: "Corn on the Cob") { (data) in
+    func getSearchId(food: String, _ completion: @escaping ([Int]) -> ()) {
+        foodSearchRequest(food: food) { (data) in
 
             var fdcIds: [Int] = []
             
