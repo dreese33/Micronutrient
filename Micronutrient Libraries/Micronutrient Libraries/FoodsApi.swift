@@ -10,6 +10,8 @@ import Foundation
 
 class FoodsApi {
     
+    private final let acceptableDataTypes: [String] = ["survey(fndds)", "srlegacy"]
+    
     let space = "%20"
     let urlBase = "https://api.nal.usda.gov/fdc/v"
     let urlVersion = 1
@@ -77,9 +79,26 @@ class FoodsApi {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                     if let values = json["foods"] as? NSArray {
-                        for i in 0...FoodsController.tableUpperBound - 1 {
+                        
+                        var i = 0
+                        var upper = FoodsController.tableUpperBound
+                        while i < upper {
                             let value = values[i] as! NSDictionary
-                            fdcIds.append(value.object(forKey: "fdcId")! as! Int)
+                            let dataType = self.simplifyDataType(dataType: value.object(forKey: "dataType")! as! String)
+                            
+                            innerLoop: for str in self.acceptableDataTypes {
+                                i += 1
+                                if dataType == str {
+                                    fdcIds.append(value.object(forKey: "fdcId")! as! Int)
+                                    break innerLoop
+                                } else {
+                                    upper += 1
+                                    print("Retrying")
+                                }
+                            }
+                        }
+                        for i in 0...FoodsController.tableUpperBound - 1 {
+                            
                         }
                         completion(fdcIds)
                     } else {
@@ -93,6 +112,13 @@ class FoodsApi {
     }
     
     /*
+     * Simplifies dataType String to determine if it is acceptable
+     */
+    func simplifyDataType(dataType: String) -> String {
+        return dataType.replacingOccurrences(of: " ", with: "").lowercased()
+    }
+    
+    /*
      * Search USDA Database for specified food item
      *
      * Parameters:
@@ -100,7 +126,7 @@ class FoodsApi {
      *
      * Throws:
      *
-     * Returns: JSON response containing food data
+     * Returns: JSON response containing food data for SR Legacy and Survey (FNDDS) types
      */
     func foodSearchRequest(food: String, completion: @escaping (Data) -> ()) {
         let url = URL(string: constructSearchURL(searchVal: food))!

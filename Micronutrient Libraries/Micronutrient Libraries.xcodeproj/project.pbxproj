@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B4C034923EA1FE500956E0F /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C034823EA1FE500956E0F /* SearchResponse.swift */; };
 		8B87735523CAA50700FA6EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87735423CAA50700FA6EBE /* AppDelegate.swift */; };
 		8B87735723CAA50700FA6EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87735623CAA50700FA6EBE /* SceneDelegate.swift */; };
 		8B87735C23CAA50700FA6EBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B87735A23CAA50700FA6EBE /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B4C034823EA1FE500956E0F /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		8B87735123CAA50700FA6EBE /* Micronutrient Libraries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Micronutrient Libraries.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B87735423CAA50700FA6EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B87735623CAA50700FA6EBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				8B87736223CAA50800FA6EBE /* LaunchScreen.storyboard */,
 				8B87736523CAA50800FA6EBE /* Info.plist */,
 				8B87735D23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodeld */,
+				8B4C034823EA1FE500956E0F /* SearchResponse.swift */,
 			);
 			path = "Micronutrient Libraries";
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			files = (
 				8B87735523CAA50700FA6EBE /* AppDelegate.swift in Sources */,
 				8B87735723CAA50700FA6EBE /* SceneDelegate.swift in Sources */,
+				8B4C034923EA1FE500956E0F /* SearchResponse.swift in Sources */,
 				8B87735F23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodeld in Sources */,
 				8BDC9ABC23E658E10006F89E /* FoodsController.swift in Sources */,
 				8BDC9ABE23E6596D0006F89E /* FoodsApi.swift in Sources */,
