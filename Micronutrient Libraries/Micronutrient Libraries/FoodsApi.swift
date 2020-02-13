@@ -199,39 +199,51 @@ class FoodsApi {
         do {
             if let json = try JSONSerialization.jsonObject(with: foodJSON, options: []) as? [String: Any] {
                 
-                //print(json["foodNutrients"])
-                //print("\n\n\n\n")
+                var foodParsed: Bool = true
+                
                 if let nutrientInfo = json["foodNutrients"] as? NSArray {
                     var micronutrients = Dictionary<String, String>()
+                    var currAmount = ""
+                    var currName = ""
+                    
                     for nutrient in nutrientInfo {
+                        currAmount = ""
+                        currName = ""
+                        
                         let value = nutrient as! NSDictionary
                         let nutrients = value["nutrient"] as! NSDictionary
                         
                         if let amount = value["amount"] as? NSNumber{
-                            print("Amount " + amount.stringValue)
+                            currAmount += amount.stringValue
                         } else {
-                            print("No amount")
+                            foodParsed = false
+                            break
                         }
                         
                         if let name = nutrients["name"] as? String {
-                            print("Name " + name)
+                            currName += name
                         } else {
-                            print("No name provided, or another error occurred")
+                            foodParsed = false
+                            break
                         }
                         
                         if let unit = nutrients["unitName"] as? String {
-                            print("Unit " + unit)
+                            currAmount += unit
                         } else {
-                            print("Unit not provided or another error occurred")
+                            foodParsed = false
+                            break
                         }
-                            
-                        print("\n\n\n")
+                        
+                        micronutrients[currName] = currAmount
                     }
                     
-                    food = Food(description: json["description"] as! String, fdcId: fdcId, micronutrients: micronutrients)
+                    if foodParsed {
+                        food = Food(description: json["description"] as! String, fdcId: fdcId, micronutrients: micronutrients)
+                    } else {
+                        return self.getDefaultFood()
+                    }
                 } else {
-                    print("Error occurred parsing micronutrient data")
-                    return Food(description: "", fdcId: -1, micronutrients: Dictionary<String, String>())
+                    return self.getDefaultFood()
                 }
             }
         } catch {
@@ -239,6 +251,19 @@ class FoodsApi {
         }
         
         return food!
+    }
+    
+    
+    /*
+     * Gets default food when error occurs
+     *
+     * Throws:
+     *
+     * Returns: A Food object with default values set
+     */
+    func getDefaultFood() -> Food {
+        print("Error occurred parsing micronutrient data")
+        return Food(description: "", fdcId: -1, micronutrients: Dictionary<String, String>())
     }
     
     

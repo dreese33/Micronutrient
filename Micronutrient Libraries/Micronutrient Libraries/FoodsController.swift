@@ -54,10 +54,9 @@ class FoodsController: UITableViewController {
         self.api!.getSearchId(food: food) { (ids) in
             for id in ids {
                 self.api!.foodDataRequest(fdcId: String(id)) { (data) in
-                    //self.foodsArray?.append(String(data: data, encoding: .utf8)!)
-                    //print(String(data: data, encoding: .utf8)!)
                     self.foodsArray?.append(data.description)
                     print("Foods obtained")
+                    print(data.micronutrients)
                     
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
