@@ -161,7 +161,7 @@ class FoodsApi {
      *
      * Returns: JSON containing data on a specific food item selected
      */
-    func foodDataRequest(fdcId: String, completion: @escaping (Data) -> ()) {
+    func foodDataRequest(fdcId: String, completion: @escaping (Food) -> ()) {
         let url = URL(string: constructDataURL(foodId: fdcId))!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -174,13 +174,73 @@ class FoodsApi {
                     print("statusCode: \(response.statusCode)")
                 }
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    completion(data)
+                    completion(self.parseFoodData(data, fdcId: Int(fdcId)!))
                 }
             }
         }
         
         task.resume()
     }
+    
+    
+    //TODO -- Make sure to add error handling for parsing is handled well
+    /*
+     * Parses food data from JSON
+     *
+     * Parameters:
+     *   - foodJSON: JSON returned from foodDataRequest
+     *
+     * Throws:
+     *
+     * Returns: Food object containing all necessary information from JSON
+     */
+    func parseFoodData(_ foodJSON: Data, fdcId: Int) -> Food {
+        var food: Food?
+        do {
+            if let json = try JSONSerialization.jsonObject(with: foodJSON, options: []) as? [String: Any] {
+                
+                //print(json["foodNutrients"])
+                //print("\n\n\n\n")
+                if let nutrientInfo = json["foodNutrients"] as? NSArray {
+                    var micronutrients = Dictionary<String, String>()
+                    for nutrient in nutrientInfo {
+                        let value = nutrient as! NSDictionary
+                        let nutrients = value["nutrient"] as! NSDictionary
+                        
+                        if let amount = value["amount"] as? NSNumber{
+                            print("Amount " + amount.stringValue)
+                        } else {
+                            print("No amount")
+                        }
+                        
+                        if let name = nutrients["name"] as? String {
+                            print("Name " + name)
+                        } else {
+                            print("No name provided, or another error occurred")
+                        }
+                        
+                        if let unit = nutrients["unitName"] as? String {
+                            print("Unit " + unit)
+                        } else {
+                            print("Unit not provided or another error occurred")
+                        }
+                            
+                        print("\n\n\n")
+                    }
+                    
+                    food = Food(description: json["description"] as! String, fdcId: fdcId, micronutrients: micronutrients)
+                } else {
+                    print("Error occurred parsing micronutrient data")
+                    return Food(description: "", fdcId: -1, micronutrients: Dictionary<String, String>())
+                }
+            }
+        } catch {
+            print("JSONSerialization error:", error)
+        }
+        
+        return food!
+    }
+    
     
     /*
     * Gets api key from ignored file

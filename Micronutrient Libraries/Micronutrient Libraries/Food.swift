@@ -1,5 +1,5 @@
 //
-//  SearchResponse.swift
+//  Food.swift
 //  Micronutrient Libraries
 //
 //  Created by Eric Reese on 2/4/20.
@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct SearchResponse {
+struct Food {
+    var description: String
     var fdcId: Int
-    var dataType: String
+    var micronutrients: Dictionary<String, String>
 }
