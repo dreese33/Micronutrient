@@ -78,32 +78,35 @@ class FoodsApi {
             
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    if let values = json["foods"] as? NSArray {
-                        
-                        var i = 0
-                        var upper = FoodsController.tableUpperBound
-                        while i < upper {
-                            let value = values[i] as! NSDictionary
-                            let dataType = self.simplifyDataType(dataType: value.object(forKey: "dataType")! as! String)
-                            
-                            innerLoop: for str in self.acceptableDataTypes {
-                                i += 1
-                                if dataType == str {
-                                    fdcIds.append(value.object(forKey: "fdcId")! as! Int)
-                                    break innerLoop
-                                } else {
-                                    upper += 1
-                                    print("Retrying")
+                    
+                        if let values = json["foods"] as? NSArray {
+                            if values.count != 0 {
+                                var i = 0
+                                var upper = FoodsController.tableUpperBound
+                                while i < upper {
+                                    if i >= values.count {
+                                        break
+                                    }
+                                    
+                                    let value = values[i] as! NSDictionary
+                                    let dataType = self.simplifyDataType(dataType: value.object(forKey: "dataType")! as! String)
+                                    
+                                    innerLoop: for str in self.acceptableDataTypes {
+                                        i += 1
+                                        if dataType == str {
+                                            fdcIds.append(value.object(forKey: "fdcId")! as! Int)
+                                            break innerLoop
+                                        } else {
+                                            upper += 1
+                                            print("Retrying")
+                                        }
+                                    }
                                 }
                             }
+                            completion(fdcIds)
+                        } else {
+                            print("Error parsing search response JSON")
                         }
-                        for i in 0...FoodsController.tableUpperBound - 1 {
-                            
-                        }
-                        completion(fdcIds)
-                    } else {
-                        print("Error parsing search response JSON")
-                    }
                 }
             } catch {
                 print("JSONSerialization error:", error)
@@ -127,6 +130,7 @@ class FoodsApi {
      * Throws:
      *
      * Returns: JSON response containing food data for SR Legacy and Survey (FNDDS) types
+     * Note: Multiple foods are returned in this function
      */
     func foodSearchRequest(food: String, completion: @escaping (Data) -> ()) {
         let url = URL(string: constructSearchURL(searchVal: food))!
@@ -141,7 +145,7 @@ class FoodsApi {
                 if let response = response as? HTTPURLResponse {
                     print("statusCode: \(response.statusCode)")
                 }
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                if let data = data {
                     completion(data)
                 }
             }
@@ -173,7 +177,7 @@ class FoodsApi {
                 if let response = response as? HTTPURLResponse {
                     print("statusCode: \(response.statusCode)")
                 }
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                if let data = data {
                     completion(self.parseFoodData(data, fdcId: Int(fdcId)!))
                 }
             }
