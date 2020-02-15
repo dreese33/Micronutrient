@@ -133,7 +133,13 @@ class FoodsApi {
      * Note: Multiple foods are returned in this function
      */
     func foodSearchRequest(food: String, completion: @escaping (Data) -> ()) {
-        let url = URL(string: constructSearchURL(searchVal: food))!
+        let searchVal = self.makeSearchValueSafe(food)
+        
+        guard let url = URL(string: constructSearchURL(searchVal: searchVal)) else {
+            
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         print(request)
@@ -152,6 +158,23 @@ class FoodsApi {
         }
         
         task.resume()
+    }
+    
+    
+    /*
+     * Removes escape sequences and special characters from search so app does not crash
+     *
+     * Parameters:
+     *    - food: String containing user search input
+     *
+     * Throws:
+     *
+     * Returns: String safe to put in url for FoodData Central search query
+     */
+    func makeSearchValueSafe(_ food: String) -> String{
+        return food.replacingOccurrences(of: "'", with: "")
+            .replacingOccurrences(of: "\"", with: "")
+            .replacingOccurrences(of: "\\", with: "")
     }
     
     

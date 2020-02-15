@@ -3,10 +3,11 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--Search For Foods-->
         <scene sceneID="f6O-fX-LvS">
             <objects>
                 <tableViewController id="ERA-0o-Mzi" customClass="FoodsController" customModule="Micronutrient_Libraries" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,27 +38,65 @@
                             <outlet property="delegate" destination="ERA-0o-Mzi" id="ZJG-rR-Hty"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Home" id="FEV-EF-uUE">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="NZi-kJ-Ajr"/>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="Foods" image="magnifyingglass.circle.fill" catalog="system" selectedImage="magnifyingglass.circle.fill" id="x8B-Vh-aKx">
+                        <color key="badgeColor" red="0.21176470589999999" green="0.61568627450000002" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="Search For Foods" id="FEV-EF-uUE"/>
                     <connections>
                         <outlet property="searchBar" destination="FmW-IL-Am8" id="2x8-dx-Lct"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UE9-oe-lHP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="841" y="841"/>
+            <point key="canvasLocation" x="1803" y="403"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="v3l-LF-ZmT">
+            <objects>
+                <tabBarController id="Li4-FG-udR" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Hok-tQ-0PP"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9Va-1y-GzV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.21176470588235294" green="0.61568627450980395" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.21176470589999999" green="0.61568627450000002" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ERA-0o-Mzi" kind="relationship" relationship="viewControllers" id="nAp-Tn-cWA"/>
+                        <segue destination="aRV-TA-oeQ" kind="relationship" relationship="viewControllers" id="Fat-oP-Now"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xew-K2-MhO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881" y="840"/>
+        </scene>
+        <!--Info-->
+        <scene sceneID="mdP-8Y-gBH">
+            <objects>
+                <viewController id="aRV-TA-oeQ" customClass="InfoController" customModule="Micronutrient_Libraries" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dbc-9J-Ehf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="5WE-eQ-T2a"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Info" image="info.circle.fill" catalog="system" id="BgB-IP-7C0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hEw-Cf-xfV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1819" y="1190"/>
+        </scene>
+        <!--Main Navigation Controller-->
         <scene sceneID="WW1-uV-L5O">
             <objects>
-                <navigationController id="duK-k3-fzF" sceneMemberID="viewController">
+                <navigationController id="duK-k3-fzF" customClass="MainNavigationController" customModule="Micronutrient_Libraries" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dhh-M5-VPA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ERA-0o-Mzi" kind="relationship" relationship="rootViewController" id="JoZ-xu-wWo"/>
+                        <segue destination="Li4-FG-udR" kind="relationship" relationship="rootViewController" id="1uw-yk-SGp"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZd-0v-aJF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -65,4 +104,8 @@
             <point key="canvasLocation" x="-78" y="841"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="info.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="magnifyingglass.circle.fill" catalog="system" width="64" height="60"/>
+    </resources>
 </document>

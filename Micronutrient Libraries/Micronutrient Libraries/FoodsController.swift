@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class FoodsController: UITableViewController, UISearchBarDelegate {
+class FoodsController: UITableViewController, UISearchBarDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -30,6 +30,16 @@ class FoodsController: UITableViewController, UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.foodsArray?.removeAll()
+        self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = "Search for Foods"
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +49,14 @@ class FoodsController: UITableViewController, UISearchBarDelegate {
         FoodsController.tableUpperBound = self.numberOfCellsOnScreen()
         
         searchBar.delegate = self
+        searchBar.layer.borderWidth = 10
+        searchBar.layer.shadowRadius = 10
+        searchBar.layer.borderColor = UIColor(red:0.21, green:0.62, blue:0.62, alpha:0.8).cgColor
+        //searchBar.searchBarStyle = .minimal
+        //searchBar.isTranslucent = false
+        //searchBar.barTintColor = UIColor.white
+        //searchBar.backgroundColor = UIColor.green
+        //searchBar.barTintColor =
     }
     
     //Table handler functions
