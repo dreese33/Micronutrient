@@ -7,9 +7,11 @@
 //
 import UIKit
 
-class FoodsController: UITableViewController, UISearchBarDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate {
+class FoodsController: UIViewController, UISearchBarDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
     
     //Upper bound value for table
     public static var tableUpperBound: Int = 0
@@ -49,6 +51,9 @@ class FoodsController: UITableViewController, UISearchBarDelegate, UINavigationC
         FoodsController.tableUpperBound = self.numberOfCellsOnScreen()
         
         searchBar.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         searchBar.layer.borderWidth = 10
         searchBar.layer.shadowRadius = 10
         searchBar.layer.borderColor = UIColor(red:0.21, green:0.62, blue:0.62, alpha:0.8).cgColor
@@ -60,17 +65,15 @@ class FoodsController: UITableViewController, UISearchBarDelegate, UINavigationC
     }
     
     //Table handler functions
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.foodsArray!.count
     }
-
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
 
         cell.textLabel?.text = self.foodsArray![indexPath.row]

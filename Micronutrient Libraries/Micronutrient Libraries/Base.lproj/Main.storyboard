@@ -7,6 +7,59 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Item-->
+        <scene sceneID="moU-c9-Jhs">
+            <objects>
+                <viewController id="MSu-S6-c6h" customClass="FoodsController" customModule="Micronutrient_Libraries" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9j4-V4-K3A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="7hh-aa-5mj">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Khf-Aw-7fq">
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tableCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="fz8-es-jml">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fz8-es-jml" id="COT-Cw-eJc">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" identifier="tableCell">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Khf-Aw-7fq" firstAttribute="leading" secondItem="Pn6-Lr-gzE" secondAttribute="leading" id="9ST-eL-dV9"/>
+                            <constraint firstItem="Khf-Aw-7fq" firstAttribute="top" secondItem="7hh-aa-5mj" secondAttribute="bottom" id="FNs-Xd-bZr"/>
+                            <constraint firstItem="7hh-aa-5mj" firstAttribute="top" secondItem="Pn6-Lr-gzE" secondAttribute="top" id="TDd-Et-f02"/>
+                            <constraint firstItem="Khf-Aw-7fq" firstAttribute="top" secondItem="7hh-aa-5mj" secondAttribute="bottom" id="a92-c9-YzF"/>
+                            <constraint firstItem="Khf-Aw-7fq" firstAttribute="trailing" secondItem="Pn6-Lr-gzE" secondAttribute="trailing" id="cIl-lv-GBU"/>
+                            <constraint firstItem="7hh-aa-5mj" firstAttribute="trailing" secondItem="Pn6-Lr-gzE" secondAttribute="trailing" id="gaN-sE-cKN"/>
+                            <constraint firstItem="Khf-Aw-7fq" firstAttribute="bottom" secondItem="Pn6-Lr-gzE" secondAttribute="bottom" id="skM-6H-y1N"/>
+                            <constraint firstItem="7hh-aa-5mj" firstAttribute="leading" secondItem="Pn6-Lr-gzE" secondAttribute="leading" id="vHw-Cw-4rC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pn6-Lr-gzE"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" image="magnifyingglass.circle.fill" catalog="system" id="Stm-BO-Lza"/>
+                    <connections>
+                        <outlet property="searchBar" destination="7hh-aa-5mj" id="h4e-wU-ZFY"/>
+                        <outlet property="tableView" destination="Khf-Aw-7fq" id="YGy-cz-8Wm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lt2-H8-KtK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1818.840579710145" y="456.69642857142856"/>
+        </scene>
         <!--Search For Foods-->
         <scene sceneID="f6O-fX-LvS">
             <objects>
@@ -20,35 +73,15 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tableCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="fz8-es-jml">
-                                <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fz8-es-jml" id="COT-Cw-eJc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration" identifier="tableCell">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="ERA-0o-Mzi" id="HeK-Ru-nNf"/>
-                            <outlet property="delegate" destination="ERA-0o-Mzi" id="ZJG-rR-Hty"/>
-                        </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Foods" image="magnifyingglass.circle.fill" catalog="system" selectedImage="magnifyingglass.circle.fill" id="x8B-Vh-aKx">
                         <color key="badgeColor" red="0.21176470589999999" green="0.61568627450000002" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Search For Foods" id="FEV-EF-uUE"/>
-                    <connections>
-                        <outlet property="searchBar" destination="FmW-IL-Am8" id="2x8-dx-Lct"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UE9-oe-lHP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1803" y="403"/>
+            <point key="canvasLocation" x="2901" y="473"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="v3l-LF-ZmT">
@@ -63,8 +96,8 @@
                         <color key="selectedImageTintColor" red="0.21176470589999999" green="0.61568627450000002" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="ERA-0o-Mzi" kind="relationship" relationship="viewControllers" id="nAp-Tn-cWA"/>
-                        <segue destination="aRV-TA-oeQ" kind="relationship" relationship="viewControllers" id="Fat-oP-Now"/>
+                        <segue destination="MSu-S6-c6h" kind="relationship" relationship="viewControllers" id="raA-6j-fYX"/>
+                        <segue destination="aRV-TA-oeQ" kind="relationship" relationship="viewControllers" id="W3D-Rw-7jo"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xew-K2-MhO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
