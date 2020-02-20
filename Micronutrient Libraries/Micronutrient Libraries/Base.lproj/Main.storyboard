@@ -17,6 +17,7 @@
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="7hh-aa-5mj">
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <color key="barTintColor" red="0.21176470589999999" green="0.61568627450000002" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Khf-Aw-7fq">

@@ -40,6 +40,8 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Search for Foods"
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64)
+        self.navigationController?.navigationBar.layer.borderColor = MainNavigationController.color.cgColor
+        self.searchBar.layer.borderColor = MainNavigationController.color.cgColor
     }
     
     override func viewDidLoad() {
@@ -54,14 +56,28 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         tableView.delegate = self
         tableView.dataSource = self
         
-        searchBar.layer.borderWidth = 10
-        searchBar.layer.shadowRadius = 10
-        searchBar.layer.borderColor = UIColor(red:0.21, green:0.62, blue:0.62, alpha:0.8).cgColor
-        //searchBar.searchBarStyle = .minimal
-        //searchBar.isTranslucent = false
-        //searchBar.barTintColor = UIColor.white
-        //searchBar.backgroundColor = UIColor.green
-        //searchBar.barTintColor =
+        searchBar.layer.borderWidth = 10.5
+        searchBar.layer.shadowRadius = 10.5
+        searchBar.layer.shadowColor = MainNavigationController.color.cgColor
+        searchBar.layer.borderColor = MainNavigationController.color.cgColor
+        searchBar.isTranslucent = false
+        
+        if let textField = self.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = .white
+            //textField.font = myFont
+            //textField.textColor = myTextColor
+            //textField.tintColor = myTintColor
+            // And so on...
+
+            let backgroundView = textField.subviews.first
+            if #available(iOS 11.0, *) { // If `searchController` is in `navigationItem`
+                backgroundView?.backgroundColor = UIColor.white.withAlphaComponent(0.3) //Or any transparent color that matches with the `navigationBar color`
+                backgroundView?.subviews.forEach({ $0.removeFromSuperview() }) // Fixes an UI bug when searchBar appears or hides when scrolling
+            }
+            backgroundView?.layer.cornerRadius = 10.5
+            backgroundView?.layer.masksToBounds = true
+            //Continue changing more properties...
+        }
     }
     
     //Table handler functions
