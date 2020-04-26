@@ -34,6 +34,9 @@
                                         <accessibility key="accessibilityConfiguration" identifier="tableCell">
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
+                                        <connections>
+                                            <segue destination="ERA-0o-Mzi" kind="show" id="Xfd-kU-qJc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -61,24 +64,35 @@
             </objects>
             <point key="canvasLocation" x="1818.840579710145" y="456.69642857142856"/>
         </scene>
-        <!--Search For Foods-->
+        <!--Micronutrients-->
         <scene sceneID="f6O-fX-LvS">
             <objects>
-                <tableViewController id="ERA-0o-Mzi" customClass="FoodsController" customModule="Micronutrient_Libraries" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ERA-0o-Mzi" customClass="MicronutrientController" customModule="Micronutrient_Libraries" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Ru-wh-p64">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" text="" id="FmW-IL-Am8">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tableCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="zNl-hp-dT0">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zNl-hp-dT0" id="n7y-eP-eoY">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="tableCell">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                            </tableViewCell>
+                        </prototypes>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Foods" image="magnifyingglass.circle.fill" catalog="system" selectedImage="magnifyingglass.circle.fill" id="x8B-Vh-aKx">
                         <color key="badgeColor" red="0.21176470589999999" green="0.61568627450000002" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Search For Foods" id="FEV-EF-uUE"/>
+                    <navigationItem key="navigationItem" title="Micronutrients" id="FEV-EF-uUE"/>
+                    <connections>
+                        <outlet property="tableView" destination="1Ru-wh-p64" id="C07-g8-P7Q"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UE9-oe-lHP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,4 +156,5 @@
         <image name="info.circle.fill" catalog="system" width="64" height="60"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

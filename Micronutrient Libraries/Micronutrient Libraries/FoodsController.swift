@@ -12,13 +12,17 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    
     //Upper bound value for table
     public static var tableUpperBound: Int = 0
     public static var tableCellHeight: CGFloat = 43.5
     
-    private var foodsArray: [String]?
+    private var foodsArray: [Food]?
     private var api: FoodsApi?
+    
+    static var searchHistory: [String] = ["1", "2", "3"]
+    static var searchState: Int = 0
+    
+    static var listOfFoodsArray: [String] = ["Fruits", "Vegetables", "Breads"]
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text {
@@ -32,9 +36,21 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         searchBar.resignFirstResponder()
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    //Transition to state 1
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        print("Editing Began")
         self.foodsArray?.removeAll()
+        FoodsController.searchState = 1
         self.tableView.reloadData()
+        return true
+    }
+    
+    //Transition to state 2
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        print("Editing Ended")
+        FoodsController.searchState = 2
+        self.tableView.reloadData()
+        return true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +63,8 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.tableFooterView = UIView()
+        
         self.foodsArray = []
         self.api = FoodsApi()
         
@@ -56,7 +74,6 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         tableView.delegate = self
         tableView.dataSource = self
         
-        searchBar.layer.borderWidth = 10.5
         searchBar.layer.shadowRadius = 10.5
         searchBar.layer.shadowColor = MainNavigationController.color.cgColor
         searchBar.layer.borderColor = MainNavigationController.color.cgColor
@@ -64,19 +81,14 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         
         if let textField = self.searchBar.value(forKey: "searchField") as? UITextField {
             textField.backgroundColor = .white
-            //textField.font = myFont
-            //textField.textColor = myTextColor
-            //textField.tintColor = myTintColor
-            // And so on...
 
             let backgroundView = textField.subviews.first
-            if #available(iOS 11.0, *) { // If `searchController` is in `navigationItem`
-                backgroundView?.backgroundColor = UIColor.white.withAlphaComponent(0.3) //Or any transparent color that matches with the `navigationBar color`
-                backgroundView?.subviews.forEach({ $0.removeFromSuperview() }) // Fixes an UI bug when searchBar appears or hides when scrolling
+            if #available(iOS 11.0, *) {
+                backgroundView?.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+                backgroundView?.subviews.forEach({ $0.removeFromSuperview() })
             }
-            backgroundView?.layer.cornerRadius = 10.5
+            
             backgroundView?.layer.masksToBounds = true
-            //Continue changing more properties...
         }
     }
     
@@ -86,13 +98,32 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.foodsArray!.count
+        switch FoodsController.searchState {
+        case 0:
+            return FoodsController.listOfFoodsArray.count
+        case 1:
+            return FoodsController.searchHistory.count
+        case 2:
+            return self.foodsArray!.count
+        default:
+            print("Something went wrong")
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
 
-        cell.textLabel?.text = self.foodsArray![indexPath.row]
+        switch FoodsController.searchState {
+        case 0:
+            cell.textLabel?.text = FoodsController.listOfFoodsArray[indexPath.row]
+        case 1:
+            cell.textLabel?.text = FoodsController.searchHistory[indexPath.row]
+        case 2:
+            cell.textLabel?.text = self.foodsArray![indexPath.row].description
+        default:
+            print("Something went wrong")
+        }
 
         return cell
     }
@@ -105,12 +136,12 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
      *
      * Throws:
      */
-    private func searchForFoods(food: String) {
+    func searchForFoods(food: String) {
         self.api!.getSearchId(food: food) { (ids) in
             for id in ids {
                 self.api!.foodDataRequest(fdcId: String(id)) { (data) in
                     if data.description.count > 0 {
-                        self.foodsArray?.append(data.description)
+                        self.foodsArray?.append(data)
                         print("Food obtained")
                     } else {
                         print("Food not obtained")
@@ -124,8 +155,29 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         }
     }
     
+    
     /*
-     * Returns: Total table cells that fit on the screen
+     * Table cell clicked - opens micronutrient information
+     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch FoodsController.searchState {
+        case 0:
+            print("Default state cell clicked")
+        case 1:
+            //Searching, history is displayed
+            print("History cell clicked")
+        case 2:
+            //Search results displayed
+            print("Search result clicked")
+            MicronutrientController.micronutrients = foodsArray![indexPath.row].micronutrients
+        default:
+            print("Something went wrong")
+        }
+    }
+    
+    
+    /*
+     * Returns: Total number of table cells that fit on the screen
      */
     private func numberOfCellsOnScreen() -> Int {
         return Int(UIScreen.main.bounds.height / FoodsController.tableCellHeight)

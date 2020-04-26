@@ -89,8 +89,13 @@ class FoodsApi {
                                     }
                                     
                                     let value = values[i] as! NSDictionary
-                                    let dataType = self.simplifyDataType(dataType: value.object(forKey: "dataType")! as! String)
+                                    //let dataType = self.simplifyDataType(dataType: value.object(forKey: "dataType")! as! String)
                                     
+                                    //Delete this code if you bring back code below
+                                    
+                                    i += 1
+                                    fdcIds.append(value.object(forKey: "fdcId")! as! Int)
+                                    /*
                                     innerLoop: for str in self.acceptableDataTypes {
                                         i += 1
                                         if dataType == str {
@@ -100,7 +105,7 @@ class FoodsApi {
                                             upper += 1
                                             print("Retrying")
                                         }
-                                    }
+                                    }*/
                                 }
                             }
                             completion(fdcIds)
