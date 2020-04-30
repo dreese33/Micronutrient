@@ -21,6 +21,7 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     
     static var searchHistory: [String] = []
     static var searchState: Int = 0
+    private var duplicateSearch: Bool = false
     
     static var listOfFoodsArray: [String] = ["Fruits", "Vegetables", "Breads"]
     
@@ -50,8 +51,10 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         print("Editing Ended")
         
         //MODIFY HERE
-        if self.searchBar.text!.count > 1 {
+        if self.searchBar.text!.count > 1 && !self.duplicateSearch {
             FoodsController.searchHistory.append(self.searchBar.text!)
+        } else {
+            self.duplicateSearch = false
         }
         
         FoodsController.searchState = 2
@@ -179,6 +182,7 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
             print("History cell clicked")
             
             let count = FoodsController.searchHistory.count
+            self.duplicateSearch = true
             self.searchBar.text = FoodsController.searchHistory[count - indexPath.row - 1]
             self.searchBarSearchButtonClicked(self.searchBar)
             
