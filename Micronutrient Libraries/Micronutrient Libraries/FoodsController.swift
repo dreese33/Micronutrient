@@ -19,7 +19,7 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     private var foodsArray: [Food]?
     private var api: FoodsApi?
     
-    static var searchHistory: [String] = ["1", "2", "3"]
+    static var searchHistory: [String] = []
     static var searchState: Int = 0
     
     static var listOfFoodsArray: [String] = ["Fruits", "Vegetables", "Breads"]
@@ -48,6 +48,12 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     //Transition to state 2
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         print("Editing Ended")
+        
+        //MODIFY HERE
+        if self.searchBar.text!.count > 1 {
+            FoodsController.searchHistory.append(self.searchBar.text!)
+        }
+        
         FoodsController.searchState = 2
         self.tableView.reloadData()
         return true
@@ -118,7 +124,7 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         case 0:
             cell.textLabel?.text = FoodsController.listOfFoodsArray[indexPath.row]
         case 1:
-            cell.textLabel?.text = FoodsController.searchHistory[indexPath.row]
+            cell.textLabel?.text = FoodsController.searchHistory[FoodsController.searchHistory.count - indexPath.row - 1]
         case 2:
             cell.textLabel?.text = self.foodsArray![indexPath.row].description
         default:
@@ -160,12 +166,23 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
      * Table cell clicked - opens micronutrient information
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        MicronutrientController.micronutrients = foodsArray![indexPath.row].micronutrients
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
         switch FoodsController.searchState {
         case 0:
             print("Default state cell clicked")
         case 1:
-            //Searching, history is displayed
             print("History cell clicked")
+            
+            let count = FoodsController.searchHistory.count
+            self.searchBar.text = FoodsController.searchHistory[count - indexPath.row - 1]
+            self.searchBarSearchButtonClicked(self.searchBar)
+            
+            return nil
         case 2:
             //Search results displayed
             print("Search result clicked")
@@ -173,6 +190,8 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         default:
             print("Something went wrong")
         }
+        
+        return indexPath
     }
     
     

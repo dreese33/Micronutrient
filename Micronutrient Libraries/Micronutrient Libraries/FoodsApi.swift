@@ -147,7 +147,7 @@ class FoodsApi {
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        print(request)
+        //print(request)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {

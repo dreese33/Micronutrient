@@ -35,7 +35,7 @@
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
                                         <connections>
-                                            <segue destination="ERA-0o-Mzi" kind="show" id="Xfd-kU-qJc"/>
+                                            <segue destination="ERA-0o-Mzi" kind="show" id="tDm-EK-2Tf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -91,7 +91,7 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Micronutrients" id="FEV-EF-uUE"/>
                     <connections>
-                        <outlet property="tableView" destination="1Ru-wh-p64" id="C07-g8-P7Q"/>
+                        <outlet property="tableView" destination="1Ru-wh-p64" id="Egc-EY-8Vl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UE9-oe-lHP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
