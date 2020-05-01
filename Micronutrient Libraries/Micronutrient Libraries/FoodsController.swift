@@ -122,9 +122,11 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-
+        cell.textLabel?.textAlignment = .natural
+        
         switch FoodsController.searchState {
         case 0:
+            cell.textLabel?.textAlignment = .center
             cell.textLabel?.text = FoodsController.listOfFoodsArray[indexPath.row]
         case 1:
             cell.textLabel?.text = FoodsController.searchHistory[FoodsController.searchHistory.count - indexPath.row - 1]
