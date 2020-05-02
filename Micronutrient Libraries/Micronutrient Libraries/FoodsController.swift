@@ -99,6 +99,47 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
             
             backgroundView?.layer.masksToBounds = true
         }
+        
+        
+        //Database initialization
+        
+        var db: Database?
+        do {
+            db = try Database.open(path: Database.createDatabase(name: "IDatabase.sqlite").absoluteString)
+            print("Successfully opened connection to the database")
+        } catch DatabaseError.OpenDatabase(message: _) {
+            print("Unable to open database")
+        } catch {
+            print("Other error occurred")
+        }
+        
+        if let database = db {
+           /* do {
+                try database.dropTable(table: "History")
+            } catch {
+                print("Unable to drop table")
+            }*/
+            
+            do {
+                try database.createTable(table: History.self)
+            } catch {
+                print(database.errorMessage)
+            }
+            
+            do {
+                try database.insert(table: History(entry: "Ty"))
+            } catch {
+                print(database.errorMessage)
+            }
+            
+            //Try to query
+            /*
+            do {
+                try database.queryGeneric(query: "SELECT * FROM History")
+            } catch {
+                print("Failed query")
+            }*/
+        }
     }
     
     //Table handler functions
@@ -171,7 +212,6 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
      * Table cell clicked - opens micronutrient information
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         MicronutrientController.micronutrients = foodsArray![indexPath.row].micronutrients
     }
     
