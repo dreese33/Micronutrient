@@ -108,7 +108,7 @@ class Database {
         print("Successfully inserted row.")
     }
     
-    //Generic Query Function
+    //Generic Query Function -- Test function, do not use
     func queryGeneric(query: String, params: [Any]? = nil) throws {
         let queryStatement = try prepareStatement(sql: query)
         defer {
@@ -155,25 +155,55 @@ class Database {
     
     
     //Drop table
-    func dropTable(table: String) throws {
-        let dropStatement = """
-            DROP TABLE ?
-        """
-        let dropTableStatement = try prepareStatement(sql: dropStatement)
-        
-        guard sqlite3_bind_text(dropTableStatement, 1, table, -1, nil) == SQLITE_OK
-            else {
-                throw DatabaseError.Bind(message: self.errorMessage)
-        }
+    func dropTable(table: Table.Type) throws {
+        let dropTableStatement = try prepareStatement(sql: table.dropTableSql)
         
         defer {
             sqlite3_finalize(dropTableStatement)
         }
         
         guard sqlite3_step(dropTableStatement) == SQLITE_DONE else {
-            throw DatabaseError.Step(message: errorMessage)
+            throw DatabaseError.Step(message: "Step " + errorMessage)
         }
         
         print("Successfully dropped table")
+    }
+    
+    
+    //Clear table of all entries
+    func clearTable(table: Table.Type) throws {
+        let clearTableStatement = try prepareStatement(sql: table.clearTableSql)
+        
+        defer {
+            sqlite3_finalize(clearTableStatement)
+        }
+        
+        guard sqlite3_step(clearTableStatement) == SQLITE_DONE else {
+            throw DatabaseError.Step(message: "Step " + errorMessage)
+        }
+        
+        print("Successfully cleared table")
+    }
+    
+    
+    //Gets all rows from history table
+    func getHistory() throws -> [History] {
+        
+        let query = """
+            SELECT * FROM History
+        """
+        let queryStatement = try prepareStatement(sql: query)
+        defer {
+            sqlite3_finalize(queryStatement)
+        }
+        
+        var rows: [History] = []
+        while sqlite3_step(queryStatement) == SQLITE_ROW {
+            let id = Int(sqlite3_column_int(queryStatement, 0))
+            let entry = String(cString: sqlite3_column_text(queryStatement, 1))
+            rows.append(History(id: id, entry: entry))
+        }
+        
+        return rows
     }
 }

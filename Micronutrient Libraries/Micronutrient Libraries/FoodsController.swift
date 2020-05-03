@@ -114,31 +114,50 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         }
         
         if let database = db {
-           /* do {
-                try database.dropTable(table: "History")
+           /* do { //Drop table test
+                try database.dropTable(table: History.self)
             } catch {
                 print("Unable to drop table")
             }*/
             
+            //Clear table test
             do {
+                try database.clearTable(table: History.self)
+            } catch {
+                print("Unable to clear table")
+            }
+            
+            
+           /* do { //Create table test
                 try database.createTable(table: History.self)
             } catch {
                 print(database.errorMessage)
-            }
+            }*/
             
+            /* //Insert test
             do {
-                try database.insert(table: History(entry: "Ty"))
+                try database.insert(table: History(id: -1, entry: "Ty"))
             } catch {
                 print(database.errorMessage)
-            }
+            }*/
             
-            //Try to query
+            //Query test
             /*
             do {
                 try database.queryGeneric(query: "SELECT * FROM History")
             } catch {
                 print("Failed query")
             }*/
+            
+            var history: [History] = []
+            do {
+                try history = database.getHistory()
+                for hist in history {
+                    print(hist.id, hist.entry)
+                }
+            } catch {
+                print(database.errorMessage)
+            }
         }
     }
     

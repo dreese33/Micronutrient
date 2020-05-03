@@ -14,10 +14,18 @@ struct History: Table {
     static var createStatement: String {
         return """
         CREATE TABLE History(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             entry VARCHAR(255)
         );
         """
+    }
+    
+    static var dropTableSql: String {
+        return "DROP TABLE History"
+    }
+    
+    static var clearTableSql: String {
+        return "DELETE FROM History"
     }
     
     var name: String {
@@ -35,5 +43,6 @@ struct History: Table {
         }
     }
     
+    var id: Int
     var entry: String
 }
