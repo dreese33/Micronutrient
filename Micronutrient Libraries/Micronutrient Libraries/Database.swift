@@ -206,4 +206,25 @@ class Database {
         
         return rows
     }
+    
+    //Gets most recent 50 items from history
+    func getRecentHistory() throws -> [History] {
+        
+        let query = """
+            SELECT * FROM History ORDER BY id DESC LIMIT 50
+        """
+        let queryStatement = try prepareStatement(sql: query)
+        defer {
+            sqlite3_finalize(queryStatement)
+        }
+        
+        var rows: [History] = []
+        while sqlite3_step(queryStatement) == SQLITE_ROW {
+            let id = Int(sqlite3_column_int(queryStatement, 0))
+            let entry = String(cString: sqlite3_column_text(queryStatement, 1))
+            rows.append(History(id: id, entry: entry))
+        }
+        
+        return rows
+    }
 }

@@ -24,8 +24,11 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     private var duplicateSearch: Bool = false
     
     static var listOfFoodsArray: [String] = ["Fruits", "Vegetables", "Breads"]
+    static var database: Database?
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        foodsArray?.removeAll()
         if let text = searchBar.text {
             if text.count > 0 {
                 self.searchForFoods(food: text)
@@ -52,7 +55,18 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         
         //MODIFY HERE
         if self.searchBar.text!.count > 1 && !self.duplicateSearch {
-            FoodsController.searchHistory.append(self.searchBar.text!)
+            
+            //Append searchHistory and add to database
+            let text = self.searchBar.text!
+            FoodsController.searchHistory.append(text)
+            
+            if let dbase = FoodsController.database {
+                do {
+                    try dbase.insert(table: History(id: -1, entry: text))
+                } catch {
+                    print(dbase.errorMessage)
+                }
+            }
         } else {
             self.duplicateSearch = false
         }
@@ -103,9 +117,9 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         
         //Database initialization
         
-        var db: Database?
+        //var db: Database?
         do {
-            db = try Database.open(path: Database.createDatabase(name: "IDatabase.sqlite").absoluteString)
+            FoodsController.database = try Database.open(path: Database.createDatabase(name: "IDatabase.sqlite").absoluteString)
             print("Successfully opened connection to the database")
         } catch DatabaseError.OpenDatabase(message: _) {
             print("Unable to open database")
@@ -113,50 +127,74 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
             print("Other error occurred")
         }
         
-        if let database = db {
+        
+        if let dbase = FoodsController.database {
            /* do { //Drop table test
-                try database.dropTable(table: History.self)
+                try dbase.dropTable(table: History.self)
             } catch {
                 print("Unable to drop table")
             }*/
             
             //Clear table test
-            do {
-                try database.clearTable(table: History.self)
+            /*do {
+                try dbase.clearTable(table: History.self)
             } catch {
                 print("Unable to clear table")
-            }
+            }*/
             
             
-           /* do { //Create table test
-                try database.createTable(table: History.self)
+            /*do { //Create table test
+                try dbase.createTable(table: History.self)
             } catch {
-                print(database.errorMessage)
+                print(dbase.errorMessage)
             }*/
             
             /* //Insert test
             do {
-                try database.insert(table: History(id: -1, entry: "Ty"))
+                try dbase.insert(table: History(id: -1, entry: "Ty"))
             } catch {
-                print(database.errorMessage)
+                print(dbase.errorMessage)
+            }*/
+            
+            //Another insert test
+            /*
+            for _ in 0...100 {
+                do {
+                    try dbase.insert(table: History(id: -1, entry: "Ty"))
+                } catch {
+                    print(dbase.errorMessage)
+                }
             }*/
             
             //Query test
             /*
             do {
-                try database.queryGeneric(query: "SELECT * FROM History")
+                try dbase.queryGeneric(query: "SELECT * FROM History")
             } catch {
                 print("Failed query")
             }*/
             
+            //Get history test
+            /*
             var history: [History] = []
             do {
-                try history = database.getHistory()
+                try history = dbase.getHistory()
                 for hist in history {
                     print(hist.id, hist.entry)
                 }
             } catch {
-                print(database.errorMessage)
+                print(dbase.errorMessage)
+            }*/
+            
+            //Loads recent history from database
+            do {
+                let history = try dbase.getRecentHistory()
+                for hist in history.reversed() {
+                    //FoodsController.searchHistory.append(String(hist.id) + hist.entry)
+                    FoodsController.searchHistory.append(hist.entry)
+                }
+            } catch {
+                print(dbase.errorMessage)
             }
         }
     }
@@ -252,6 +290,11 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
             //Search results displayed
             print("Search result clicked")
             MicronutrientController.micronutrients = foodsArray![indexPath.row].micronutrients
+            
+            let infoViewController = storyboard?.instantiateViewController(withIdentifier: "MasterMicronutrientController") as! MasterMicronutrientController
+            infoViewController.modalPresentationStyle = .overCurrentContext
+            self.navigationController?.pushViewController(infoViewController, animated: true)
+
         default:
             print("Something went wrong")
         }

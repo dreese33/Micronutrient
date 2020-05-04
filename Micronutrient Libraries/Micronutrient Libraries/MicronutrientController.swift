@@ -14,7 +14,7 @@ class MicronutrientController: UIViewController, UITableViewDelegate, UITableVie
     private var values: [String]?
     
     //TableView component
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -38,7 +38,7 @@ class MicronutrientController: UIViewController, UITableViewDelegate, UITableVie
         default:
             print("Something went wrong")
         }
-    
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.reloadData()

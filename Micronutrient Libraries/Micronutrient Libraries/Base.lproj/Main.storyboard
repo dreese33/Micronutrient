@@ -35,7 +35,7 @@
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
                                         <connections>
-                                            <segue destination="ERA-0o-Mzi" kind="show" id="tDm-EK-2Tf"/>
+                                            <segue destination="z0g-rJ-ZH8" kind="show" identifier="pushSegue" trigger="accessoryAction" id="cnm-bf-GiV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -68,8 +68,8 @@
         <scene sceneID="f6O-fX-LvS">
             <objects>
                 <tableViewController id="ERA-0o-Mzi" customClass="MicronutrientController" customModule="Micronutrient_Libraries" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Ru-wh-p64">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Ru-wh-p64">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="706"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -91,12 +91,12 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Micronutrients" id="FEV-EF-uUE"/>
                     <connections>
-                        <outlet property="tableView" destination="1Ru-wh-p64" id="Egc-EY-8Vl"/>
+                        <outlet property="tableView" destination="1Ru-wh-p64" id="tV3-G3-otB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UE9-oe-lHP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2901" y="473"/>
+            <point key="canvasLocation" x="4397" y="443"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="v3l-LF-ZmT">
@@ -134,6 +134,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hEw-Cf-xfV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1819" y="1190"/>
+        </scene>
+        <!--Master Micronutrient Controller-->
+        <scene sceneID="MhI-db-Eub">
+            <objects>
+                <viewController restorationIdentifier="MasterMicronutrientController" storyboardIdentifier="MasterMicronutrientController" id="z0g-rJ-ZH8" customClass="MasterMicronutrientController" customModule="Micronutrient_Libraries" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FH1-07-i26">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdI-4F-zwi">
+                                <rect key="frame" x="0.0" y="88" width="414" height="706"/>
+                                <connections>
+                                    <segue destination="ERA-0o-Mzi" kind="embed" id="iAx-LY-fWu"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sby-3b-xtE">
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="1GV-W5-dsY"/>
+                                </constraints>
+                                <state key="normal" title="Save Food"/>
+                                <connections>
+                                    <action selector="saveFood:" destination="ojB-iC-3NV" eventType="touchUpInside" id="vAo-Am-Y5i"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vdI-4F-zwi" firstAttribute="leading" secondItem="ZDk-z2-xOM" secondAttribute="leading" id="5yz-KG-rKD"/>
+                            <constraint firstItem="sby-3b-xtE" firstAttribute="top" secondItem="vdI-4F-zwi" secondAttribute="bottom" constant="8" id="79S-e7-FZu"/>
+                            <constraint firstItem="sby-3b-xtE" firstAttribute="leading" secondItem="ZDk-z2-xOM" secondAttribute="leading" id="RSd-xn-Qu1"/>
+                            <constraint firstItem="vdI-4F-zwi" firstAttribute="trailing" secondItem="ZDk-z2-xOM" secondAttribute="trailing" id="Zxs-uO-mB6"/>
+                            <constraint firstItem="vdI-4F-zwi" firstAttribute="top" secondItem="ZDk-z2-xOM" secondAttribute="top" id="ulC-c4-ZTP"/>
+                            <constraint firstItem="sby-3b-xtE" firstAttribute="bottom" secondItem="ZDk-z2-xOM" secondAttribute="bottom" id="unq-tB-fSg"/>
+                            <constraint firstItem="sby-3b-xtE" firstAttribute="trailing" secondItem="ZDk-z2-xOM" secondAttribute="trailing" id="vc8-91-7gm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZDk-z2-xOM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="i59-oC-yno"/>
+                    <connections>
+                        <outlet property="containerView" destination="vdI-4F-zwi" id="tIf-xO-QVm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vD0-27-ejs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="ojB-iC-3NV" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3057.971014492754" y="456.69642857142856"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="WW1-uV-L5O">
