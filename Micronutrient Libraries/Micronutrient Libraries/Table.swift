@@ -10,7 +10,7 @@ import Foundation
 
 protocol Table {
     static var createStatement: String { get }
-    var name: String { get }
+    static var name: String { get }
     var insertSql: String { get }
     static var dropTableSql: String { get }
     static var clearTableSql: String { get }

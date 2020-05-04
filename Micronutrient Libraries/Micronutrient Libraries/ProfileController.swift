@@ -23,23 +23,35 @@ class ProfileController: UIViewController {
         self.macronutrientCircles = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
         self.macronutrientCircles?.backgroundColor = .black
         
-        //Test1
-        let macronutrientCircles1 = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.width, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
-        macronutrientCircles1.backgroundColor = .orange
-        let macronutrientCircles2 = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.width * 2, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
-        macronutrientCircles2.backgroundColor = .yellow
-        
         self.contentView.addSubview(self.macronutrientCircles!)
+        //self.addTestViews()
         
-        //Test2
-        self.contentView.addSubview(macronutrientCircles1)
-        self.contentView.addSubview(macronutrientCircles2)
-        
-        self.contentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 3)
+        self.updateContentSize()
         
         self.scrollView.isScrollEnabled = true
         self.scrollView.contentSize = CGSize(width: self.contentView.frame.width, height: self.contentView.frame.height)
         
         self.setNeedsFocusUpdate()
+    }
+    
+    
+    func updateContentSize() {
+        var newContentSize: CGFloat = 0.0
+        for view in contentView.subviews {
+            newContentSize += view.bounds.height
+        }
+        
+        self.contentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: newContentSize)
+    }
+    
+    
+    func addTestViews() {
+        let macronutrientCircles1 = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.width, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
+        macronutrientCircles1.backgroundColor = .orange
+        let macronutrientCircles2 = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.width * 2, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
+        macronutrientCircles2.backgroundColor = .yellow
+        
+        self.contentView.addSubview(macronutrientCircles1)
+        self.contentView.addSubview(macronutrientCircles2)
     }
 }

@@ -116,87 +116,8 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         
         
         //Database initialization
-        
-        //var db: Database?
-        do {
-            FoodsController.database = try Database.open(path: Database.createDatabase(name: "IDatabase.sqlite").absoluteString)
-            print("Successfully opened connection to the database")
-        } catch DatabaseError.OpenDatabase(message: _) {
-            print("Unable to open database")
-        } catch {
-            print("Other error occurred")
-        }
-        
-        
-        if let dbase = FoodsController.database {
-           /* do { //Drop table test
-                try dbase.dropTable(table: History.self)
-            } catch {
-                print("Unable to drop table")
-            }*/
-            
-            //Clear table test
-            /*do {
-                try dbase.clearTable(table: History.self)
-            } catch {
-                print("Unable to clear table")
-            }*/
-            
-            
-            /*do { //Create table test
-                try dbase.createTable(table: History.self)
-            } catch {
-                print(dbase.errorMessage)
-            }*/
-            
-            /* //Insert test
-            do {
-                try dbase.insert(table: History(id: -1, entry: "Ty"))
-            } catch {
-                print(dbase.errorMessage)
-            }*/
-            
-            //Another insert test
-            /*
-            for _ in 0...100 {
-                do {
-                    try dbase.insert(table: History(id: -1, entry: "Ty"))
-                } catch {
-                    print(dbase.errorMessage)
-                }
-            }*/
-            
-            //Query test
-            /*
-            do {
-                try dbase.queryGeneric(query: "SELECT * FROM History")
-            } catch {
-                print("Failed query")
-            }*/
-            
-            //Get history test
-            /*
-            var history: [History] = []
-            do {
-                try history = dbase.getHistory()
-                for hist in history {
-                    print(hist.id, hist.entry)
-                }
-            } catch {
-                print(dbase.errorMessage)
-            }*/
-            
-            //Loads recent history from database
-            do {
-                let history = try dbase.getRecentHistory()
-                for hist in history.reversed() {
-                    //FoodsController.searchHistory.append(String(hist.id) + hist.entry)
-                    FoodsController.searchHistory.append(hist.entry)
-                }
-            } catch {
-                print(dbase.errorMessage)
-            }
-        }
+        self.openDatabase()
+        self.loadRecentHistory()
     }
     
     //Table handler functions
@@ -308,5 +229,123 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
      */
     private func numberOfCellsOnScreen() -> Int {
         return Int(UIScreen.main.bounds.height / FoodsController.tableCellHeight)
+    }
+    
+    
+    
+    /*
+     *
+     Database handling
+     *
+     */
+    
+    
+    func openDatabase() {
+        do {
+            FoodsController.database = try Database.open(path: Database.createDatabase(name: "IDatabase.sqlite").absoluteString)
+            print("Successfully opened connection to the database")
+        } catch DatabaseError.OpenDatabase(message: _) {
+            print("Unable to open database")
+        } catch {
+            print("Other error occurred")
+        }
+    }
+    
+    
+    func dropTable(table: Table.Type) {
+        if let dbase = FoodsController.database {
+            do { //Drop table test
+                try dbase.dropTable(table: table)
+            } catch {
+                print("Unable to drop table")
+            }
+        }
+    }
+    
+    
+    func clearTable(table: Table.Type) {
+        if let dbase = FoodsController.database {
+            do {
+                try dbase.clearTable(table: table)
+            } catch {
+                print("Unable to clear table")
+            }
+        }
+    }
+    
+    
+    func createTable(table: Table.Type) {
+        if let dbase = FoodsController.database {
+            do {
+                try dbase.createTable(table: table)
+            } catch {
+                print(dbase.errorMessage)
+            }
+        }
+    }
+    
+    
+    func insertTable(entry: Table) {
+        if let dbase = FoodsController.database {
+            do {
+                try dbase.insert(table: entry)
+            } catch {
+                print(dbase.errorMessage)
+            }
+        }
+    }
+    
+    
+    func queryGeneric(table: Table.Type) {
+        if let dbase = FoodsController.database {
+            do {
+                try dbase.queryGeneric(query: "SELECT * FROM " + table.name)
+            } catch {
+                print("Failed query")
+            }
+        }
+    }
+    
+    
+    func getHistoryValues() {
+        if let dbase = FoodsController.database {
+            var history: [History] = []
+            do {
+                try history = dbase.getHistory()
+                for hist in history {
+                    print(hist.id, hist.entry)
+                }
+            } catch {
+                print(dbase.errorMessage)
+            }
+        }
+    }
+    
+    
+    func loadRecentHistory() {
+        if let dbase = FoodsController.database {
+            do {
+                let history = try dbase.getRecentHistory()
+                for hist in history.reversed() {
+                    //FoodsController.searchHistory.append(String(hist.id) + hist.entry)
+                    FoodsController.searchHistory.append(hist.entry)
+                }
+            } catch {
+                print(dbase.errorMessage)
+            }
+        }
+    }
+    
+    
+    func insertTest1() {
+        if let dbase = FoodsController.database {
+            for _ in 0...100 {
+                do {
+                    try dbase.insert(table: History(id: -1, entry: "Random Entry"))
+                } catch {
+                    print(dbase.errorMessage)
+                }
+            }
+        }
     }
 }

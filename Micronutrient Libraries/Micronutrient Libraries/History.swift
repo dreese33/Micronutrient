@@ -28,12 +28,12 @@ struct History: Table {
         return "DELETE FROM History"
     }
     
-    var name: String {
+    static var name: String {
         return "History"
     }
     
     var insertSql: String {
-        return "INSERT INTO \(name) (entry) VALUES (\'\(entry)\');"
+        return "INSERT INTO \(History.name) (entry) VALUES (\'\(entry)\');"
     }
     
     func bindStatements(insertStatement: OpaquePointer?, database: Database) throws {
