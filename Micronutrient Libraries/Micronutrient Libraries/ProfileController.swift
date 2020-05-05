@@ -13,25 +13,38 @@ class ProfileController: UIViewController {
     //Main view
     @IBOutlet weak var contentView: UIView!
     
+    //Calories views
+    var caloriesCircle: AdaptiveCircle?
+    var caloriesView: UIView?
+    
     //Macronutrient circles
-    var macronutrientCircles: UIView?
+    var macronutrientCirclesView: UIView?
     @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Profile"
+        
+        //Update test
+        do {
+            try self.caloriesCircle!.updateCirclePercent(percent: 0.95, time: 3)
+        } catch is AdaptiveCircleException {
+            print("Adapt")
+        } catch {
+            print("other")
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.macronutrientCircles = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
-        self.macronutrientCircles?.backgroundColor = .white
+        self.caloriesView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
+        self.caloriesView?.backgroundColor = .white
         
-        self.contentView.addSubview(self.macronutrientCircles!)
+        self.contentView.addSubview(self.caloriesView!)
         self.addTestViews()
         
-        let circleTestView = AdaptiveCircle(radius: 100.0, centerPt: self.macronutrientCircles!.center, percentComplete: 0.75)
-        self.macronutrientCircles?.addSubview(circleTestView)
+        self.caloriesCircle = AdaptiveCircle(radius: 100.0, centerPt: self.caloriesView!.center, percentComplete: 0.75)
+        self.caloriesView?.addSubview(self.caloriesCircle!)
         //self.contentView.addSubview(circleTestView)
         
         //Finish UI Setup
@@ -39,6 +52,7 @@ class ProfileController: UIViewController {
         self.scrollView.isScrollEnabled = true
         self.scrollView.contentSize = CGSize(width: self.contentView.frame.width, height: self.contentView.frame.height)
         self.setNeedsFocusUpdate()
+        
     }
     
     

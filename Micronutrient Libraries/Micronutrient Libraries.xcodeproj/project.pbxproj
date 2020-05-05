@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8B21D9022421B7D000B5A67C /* MicronutrientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21D9012421B7D000B5A67C /* MicronutrientController.swift */; };
 		8B2F61B823EA605D00D68742 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2F61B723EA605D00D68742 /* Food.swift */; };
+		8B672C9F2461E718008002E8 /* AdaptiveCircleExceptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B672C9E2461E718008002E8 /* AdaptiveCircleExceptions.swift */; };
 		8B87735523CAA50700FA6EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87735423CAA50700FA6EBE /* AppDelegate.swift */; };
 		8B87735723CAA50700FA6EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87735623CAA50700FA6EBE /* SceneDelegate.swift */; };
 		8B87735C23CAA50700FA6EBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B87735A23CAA50700FA6EBE /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		8B21D9012421B7D000B5A67C /* MicronutrientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicronutrientController.swift; sourceTree = "<group>"; };
 		8B2F61B723EA605D00D68742 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		8B672C9E2461E718008002E8 /* AdaptiveCircleExceptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveCircleExceptions.swift; sourceTree = "<group>"; };
 		8B87735123CAA50700FA6EBE /* Micronutrient Libraries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Micronutrient Libraries.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B87735423CAA50700FA6EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B87735623CAA50700FA6EBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				8B87735A23CAA50700FA6EBE /* Main.storyboard */,
 				8BADC17A2460960200E60AD1 /* ProfileController.swift */,
 				8B9360182460D54E00B4F31B /* AdaptiveCircle.swift */,
+				8B672C9E2461E718008002E8 /* AdaptiveCircleExceptions.swift */,
 				8BE4D1772460759C006BBAB5 /* MasterMicronutrientController.swift */,
 				8B87736023CAA50800FA6EBE /* Assets.xcassets */,
 				8B87736223CAA50800FA6EBE /* LaunchScreen.storyboard */,
@@ -318,6 +321,7 @@
 				8B8E39FD245E09F3007AA85F /* Table.swift in Sources */,
 				8B87735F23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodeld in Sources */,
 				8BE8ED4A23F87B8500A703B1 /* MainNavigationController.swift in Sources */,
+				8B672C9F2461E718008002E8 /* AdaptiveCircleExceptions.swift in Sources */,
 				8B8E39FB245E09A7007AA85F /* History.swift in Sources */,
 				8BDC9ABC23E658E10006F89E /* FoodsController.swift in Sources */,
 				8BDC9ABE23E6596D0006F89E /* FoodsApi.swift in Sources */,
