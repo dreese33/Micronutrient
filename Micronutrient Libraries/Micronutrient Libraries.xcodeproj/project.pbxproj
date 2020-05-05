@@ -21,6 +21,7 @@
 		8B8E39F9245DE681007AA85F /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E39F8245DE681007AA85F /* DatabaseError.swift */; };
 		8B8E39FB245E09A7007AA85F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E39FA245E09A7007AA85F /* History.swift */; };
 		8B8E39FD245E09F3007AA85F /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E39FC245E09F3007AA85F /* Table.swift */; };
+		8B9360192460D54E00B4F31B /* AdaptiveCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9360182460D54E00B4F31B /* AdaptiveCircle.swift */; };
 		8BADC17B2460960200E60AD1 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BADC17A2460960200E60AD1 /* ProfileController.swift */; };
 		8BDC9ABC23E658E10006F89E /* FoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC9ABB23E658E10006F89E /* FoodsController.swift */; };
 		8BDC9ABE23E6596D0006F89E /* FoodsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC9ABD23E6596D0006F89E /* FoodsApi.swift */; };
@@ -69,6 +70,7 @@
 		8B8E39F8245DE681007AA85F /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		8B8E39FA245E09A7007AA85F /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		8B8E39FC245E09F3007AA85F /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		8B9360182460D54E00B4F31B /* AdaptiveCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveCircle.swift; sourceTree = "<group>"; };
 		8BADC17A2460960200E60AD1 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		8BDC9ABB23E658E10006F89E /* FoodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodsController.swift; sourceTree = "<group>"; };
 		8BDC9ABD23E6596D0006F89E /* FoodsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodsApi.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				8BDC9ABD23E6596D0006F89E /* FoodsApi.swift */,
 				8B87735A23CAA50700FA6EBE /* Main.storyboard */,
 				8BADC17A2460960200E60AD1 /* ProfileController.swift */,
+				8B9360182460D54E00B4F31B /* AdaptiveCircle.swift */,
 				8BE4D1772460759C006BBAB5 /* MasterMicronutrientController.swift */,
 				8B87736023CAA50800FA6EBE /* Assets.xcassets */,
 				8B87736223CAA50800FA6EBE /* LaunchScreen.storyboard */,
@@ -318,6 +321,7 @@
 				8B8E39FB245E09A7007AA85F /* History.swift in Sources */,
 				8BDC9ABC23E658E10006F89E /* FoodsController.swift in Sources */,
 				8BDC9ABE23E6596D0006F89E /* FoodsApi.swift in Sources */,
+				8B9360192460D54E00B4F31B /* AdaptiveCircle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
