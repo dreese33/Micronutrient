@@ -23,7 +23,7 @@ class AdaptiveCircle: UIView {
         self.circleRadius = radius
         self.center = centerPt
         
-        let modifiedCenter = CGPoint(x: centerPt.x - radius, y: centerPt.y - radius)
+        let modifiedCenter = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         
         let innerCirclePath = UIBezierPath(arcCenter: modifiedCenter, radius: radius - 10, startAngle: 0.0, endAngle: CGFloat.pi * 2, clockwise: true)
         
@@ -74,13 +74,15 @@ class AdaptiveCircle: UIView {
             
             CATransaction.begin()
             
-            let outerCirclePath = UIBezierPath(arcCenter: CGPoint(x: self.center.x - rad, y: self.center.y - rad), radius: rad, startAngle: 0.0, endAngle: CGFloat.pi * 2 * percent, clockwise: true)
+            let outerCirclePath = UIBezierPath(arcCenter: CGPoint(x: self.frame.width / 2, y: self.frame.height / 2), radius: rad, startAngle: 0.0, endAngle: CGFloat.pi * 2 * percent, clockwise: true)
             
             self.outerCircle.path = outerCirclePath.cgPath
             let animation = CABasicAnimation(keyPath: "strokeEnd")
             animation.duration = CFTimeInterval(time)
             animation.fromValue = percent * per
             animation.toValue = 1
+            animation.fillMode = .forwards
+            animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
             
             self.outerCircle.add(animation, forKey: animation.keyPath)
             CATransaction.commit()
