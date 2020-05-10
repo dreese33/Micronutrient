@@ -82,7 +82,7 @@ class FoodsApi {
                         if let values = json["foods"] as? NSArray {
                             if values.count != 0 {
                                 var i = 0
-                                var upper = FoodsController.tableUpperBound
+                                let upper = FoodsController.tableUpperBound
                                 while i < upper {
                                     if i >= values.count {
                                         break

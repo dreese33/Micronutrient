@@ -195,11 +195,13 @@ class ProfileController: UIViewController {
         self.caloriesLabel = UILabel()
         self.caloriesLabel.text = "Calories: " + String(self.currentCalories) + " kcal"
         self.caloriesLabel.textAlignment = .center
+        self.caloriesLabel.font = UIFont.boldSystemFont(ofSize: 20)
         self.caloriesView.addSubview(caloriesLabel)
         
         self.caloriesGoal = UILabel()
         self.caloriesGoal.text = "Goal: " + String(self.currentGoal) + " kcal"
         self.caloriesLabel.textAlignment = .center
+        self.caloriesGoal.font = UIFont.boldSystemFont(ofSize: 20)
         self.caloriesView.addSubview(caloriesGoal)
         
         [caloriesGoal, caloriesLabel].forEach {
@@ -222,6 +224,8 @@ class ProfileController: UIViewController {
     
     func addMacronutrientViews() {
         
+        let halfWidth: CGFloat = UIScreen.main.bounds.width / 2
+        
         //Macronutrient View
         self.macronutrientCirclesView = UIView()
         self.macronutrientCirclesView.layer.borderWidth = 1
@@ -233,13 +237,16 @@ class ProfileController: UIViewController {
         self.macronutrientCirclesView.addSubview(self.macrosLabel)
         
         //Circles
+        let verticalOffset: CGFloat = 60.0
+        
         let screenWidth = UIScreen.main.bounds.width
         let circleRadius = screenWidth / 8
         let offset: CGFloat = 5.0
         
-        let centerPointP = CGPoint(x: screenWidth / 2 - circleRadius - offset * 2, y: screenWidth / 2 - circleRadius - offset + 27.5)
-        let centerPointC = CGPoint(x: screenWidth / 2 + circleRadius + offset * 2, y: screenWidth / 2 - circleRadius - offset + 27.5)
-        let centerPointF = CGPoint(x: screenWidth / 2, y: screenWidth / 2 + circleRadius + offset + 27.5)
+        
+        let centerPointP = CGPoint(x: halfWidth - circleRadius - offset * 2, y: halfWidth - circleRadius + verticalOffset + 27.5)
+        let centerPointC = CGPoint(x: halfWidth + circleRadius + offset * 2, y: halfWidth - circleRadius + verticalOffset + 27.5)
+        let centerPointF = CGPoint(x: halfWidth, y: halfWidth + circleRadius + verticalOffset + 27.5)
         
         self.proteinCircle = AdaptiveCircle(radius: circleRadius, centerPt: centerPointP, percentComplete: 0.75, borderWidth: 5)
         self.macronutrientCirclesView.addSubview(self.proteinCircle)
@@ -250,11 +257,38 @@ class ProfileController: UIViewController {
         self.fatsCircle = AdaptiveCircle(radius: circleRadius, centerPt: centerPointF, percentComplete: 0.75, borderWidth: 5)
         self.macronutrientCirclesView.addSubview(self.fatsCircle)
         
+        
+        //Protein, fats, and carbs labels
+        self.proteinLabel = UILabel()
+        self.fatsLabel = UILabel()
+        self.carbsLabel = UILabel()
+        
+        self.proteinGoal = UILabel()
+        self.fatsGoal = UILabel()
+        self.carbsGoal = UILabel()
+        
+        self.proteinLabel.text = "Protein"
+        self.proteinLabel.textAlignment = .center
+        self.carbsLabel.text = "Carbs"
+        self.carbsLabel.textAlignment = .center
+        self.fatsLabel.text = "Fats"
+        self.fatsLabel.textAlignment = .center
+        //self.proteinLabel.layer.borderWidth = 1
+        //self.fatsLabel.layer.borderWidth = 1
+        //self.carbsLabel.layer.borderWidth = 1
+        
+        self.macronutrientCirclesView.addSubview(self.proteinLabel)
+        self.macronutrientCirclesView.addSubview(self.carbsLabel)
+        self.macronutrientCirclesView.addSubview(self.fatsLabel)
+        
         //Setup
-        [self.macronutrientCirclesView, self.macrosLabel].forEach {
+        let setupVals = [self.macronutrientCirclesView, self.macrosLabel, self.proteinLabel,
+                         self.carbsLabel, self.fatsLabel]
+        setupVals.forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false
         }
         
+        let diameter: CGFloat = self.proteinCircle.getCircleRadius() * 2
         NSLayoutConstraint.activate([
             //Main macronutrients view
             self.macronutrientCirclesView.topAnchor.constraint(equalTo: self.caloriesView.bottomAnchor, constant: 0.0),
@@ -264,10 +298,26 @@ class ProfileController: UIViewController {
             
             //Macros label
             self.macrosLabel.centerXAnchor.constraint(equalTo: self.macronutrientCirclesView.centerXAnchor),
-            self.macrosLabel.topAnchor.constraint(equalTo: self.macronutrientCirclesView.topAnchor, constant: 15),
-            self.macrosLabel.heightAnchor.constraint(equalToConstant: 40)
+            self.macrosLabel.topAnchor.constraint(equalTo: self.macronutrientCirclesView.topAnchor, constant: 40),
+            self.macrosLabel.heightAnchor.constraint(equalToConstant: 40),
+            
+            //Protein Label
+            self.proteinLabel.heightAnchor.constraint(equalToConstant: 40),
+            self.proteinLabel.centerXAnchor.constraint(equalTo: self.proteinCircle.centerXAnchor),
+            self.proteinLabel.centerYAnchor.constraint(equalTo: self.macronutrientCirclesView.centerYAnchor, constant: -halfWidth - diameter + verticalOffset),
+            
+            //Fats Label
+            self.fatsLabel.heightAnchor.constraint(equalToConstant: 40),
+            self.fatsLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor, constant: self.fatsCircle.getCircleRadius() + offset),
+            self.fatsLabel.centerYAnchor.constraint(equalTo: self.macronutrientCirclesView.centerYAnchor, constant: -halfWidth - diameter + verticalOffset),
+            
+            //Carbs Label
+            self.carbsLabel.heightAnchor.constraint(equalToConstant: 40),
+            self.carbsLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.carbsLabel.centerYAnchor.constraint(equalTo: self.macronutrientCirclesView.centerYAnchor, constant: -self.carbsCircle.getCircleRadius() + verticalOffset)
         ])
     }
+    
     
     func update(circle: AdaptiveCircle, percent: CGFloat, time: CGFloat) {
         do {
