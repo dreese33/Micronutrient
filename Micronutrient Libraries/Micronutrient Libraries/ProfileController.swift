@@ -29,7 +29,32 @@ class ProfileController: UIViewController {
     var currentGoal: Int = 0
     
     //Macronutrient circles
-    var macronutrientCirclesView: UIView?
+    var macronutrientCirclesView: UIView!
+    var macrosLabel: UILabel!
+    
+    //Protein
+    var proteinCircle: AdaptiveCircle!
+    var proteinLabel: UILabel!
+    var proteinGoal: UILabel!
+    var currentProteinAmount: Int = 0
+    var currentProteinGoal: Int = 0
+    
+    //Carbs
+    var carbsCircle: AdaptiveCircle!
+    var carbsLabel: UILabel!
+    var carbsGoal: UILabel!
+    var currentCarbsAmount: Int = 0
+    var currentCarbsGoal: Int = 0
+    
+    //Fats
+    var fatsCircle: AdaptiveCircle!
+    var fatsLabel: UILabel!
+    var fatsGoal: UILabel!
+    var currentFatAmount: Int = 0
+    var currentFatGoal: Int = 0
+    
+    
+    //Main Scroll View
     @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,28 +69,26 @@ class ProfileController: UIViewController {
         
         self.addCalendarView()
         self.addCaloriesView()
+        self.addMacronutrientViews()
         
         //Finish UI Setup
-        //self.updateContentSize()
+        self.updateContentSize()
         self.scrollView.isScrollEnabled = true
         self.scrollView.contentSize = CGSize(width: self.contentView.frame.width, height: self.contentView.frame.height)
         self.setNeedsFocusUpdate()
     }
     
-    /*
-    func updateContentSize() {
-        self.contentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.getCurrentY())
-    }*/
     
-    /*
-    func getCurrentY() -> CGFloat {
-        var newContentSize: CGFloat = 0.0
-        for view in contentView.subviews {
-            newContentSize += view.bounds.height
-        }
+    func updateContentSize() {
+        self.contentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.getCurrentHeight())
+    }
+    
+    func getCurrentHeight() -> CGFloat {
+        var height: CGFloat = 0.0
+        height += UIScreen.main.bounds.width * 3 + 60
         
-        return newContentSize
-    }*/
+        return height
+    }
     
     
     func addTestViews() {
@@ -76,6 +99,80 @@ class ProfileController: UIViewController {
         
         self.contentView.addSubview(macronutrientCircles1)
         self.contentView.addSubview(macronutrientCircles2)
+    }
+    
+    
+    func addCalendarView() {
+        self.calendarView = UIView()
+        self.calendarView.backgroundColor = UIColor.init(red: 54.0 / 255.0, green: 157.0 / 255.0, blue: 158.0 / 255.0, alpha: 1)
+        self.calendarView.layer.borderColor = UIColor.black.cgColor
+        //self.calendarView.layer.borderWidth = 1
+
+        self.currentDate = UILabel()
+        self.currentDate.text = "5/6/20"
+        self.currentDate.textColor = .black
+        self.currentDate.layer.borderColor = UIColor.black.cgColor
+        self.currentDate.layer.borderWidth = 1
+        self.currentDate.textAlignment = .center
+        self.currentDate.backgroundColor = .white
+
+        guard let imgLeft = UIImage(systemName: "arrow.left"),
+            let imgRight = UIImage(systemName: "arrow.right") else {
+                fatalError("Could not create arrow images!")
+        }
+
+        let image1 = imgLeft.withTintColor(.blue)
+        let image2 = imgRight.withTintColor(.blue)
+
+        self.leftArrow = UIImageView(image: image1)
+        self.rightArrow = UIImageView(image: image2)
+        
+        self.leftArrow.tintColor = .white
+        self.rightArrow.tintColor = .white
+
+        self.calendarView.addSubview(self.currentDate)
+        self.calendarView.addSubview(self.leftArrow)
+        self.calendarView.addSubview(self.rightArrow)
+
+        self.view.addSubview(self.calendarView)
+
+        [calendarView, currentDate, leftArrow, rightArrow].forEach {
+            $0?.translatesAutoresizingMaskIntoConstraints = false
+        }
+
+        // respect safe area
+        let g = view.safeAreaLayoutGuide
+
+        NSLayoutConstraint.activate([
+
+            // calendarView to view (safe area) Top / Leading / Trailing
+            //  Height: 60
+            calendarView.topAnchor.constraint(equalTo: g.topAnchor, constant: 0.0),
+            calendarView.leadingAnchor.constraint(equalTo: g.leadingAnchor, constant: 0.0),
+            calendarView.trailingAnchor.constraint(equalTo: g.trailingAnchor, constant: 0.0),
+            calendarView.heightAnchor.constraint(equalToConstant: 60.0),
+
+            // currentDate label to calendarView centerX & centerY
+            //  Width: 1/2 of calendarView width
+            //  Height: 40
+            currentDate.centerXAnchor.constraint(equalTo: calendarView.centerXAnchor),
+            currentDate.centerYAnchor.constraint(equalTo: calendarView.centerYAnchor),
+            currentDate.heightAnchor.constraint(equalToConstant: 40.0),
+            currentDate.widthAnchor.constraint(equalTo: calendarView.widthAnchor, multiplier: 0.5),
+
+            // leftArrow to calendarView Leading: 10 Width: 40 Height: 40 centerY
+            leftArrow.leadingAnchor.constraint(equalTo: calendarView.leadingAnchor, constant: 10.0),
+            leftArrow.widthAnchor.constraint(equalToConstant: 40.0),
+            leftArrow.heightAnchor.constraint(equalToConstant: 40.0),
+            leftArrow.centerYAnchor.constraint(equalTo: calendarView.centerYAnchor),
+
+            // rightArrow to calendarView Trailing: -10 Width: 40 Height: 40 centerY
+            rightArrow.trailingAnchor.constraint(equalTo: calendarView.trailingAnchor, constant: -10.0),
+            rightArrow.widthAnchor.constraint(equalToConstant: 40.0),
+            rightArrow.heightAnchor.constraint(equalToConstant: 40.0),
+            rightArrow.centerYAnchor.constraint(equalTo: calendarView.centerYAnchor),
+
+        ])
     }
     
     
@@ -122,79 +219,55 @@ class ProfileController: UIViewController {
         ])
     }
     
-    func addCalendarView() {
-        self.calendarView = UIView()
-        self.calendarView.backgroundColor = UIColor.init(red: 54.0 / 255.0, green: 157.0 / 255.0, blue: 158.0 / 255.0, alpha: 1)
-        self.calendarView.layer.borderColor = UIColor.black.cgColor
-        //self.calendarView.layer.borderWidth = 1
-
-        self.currentDate = UILabel()
-        self.currentDate.text = "5/6/20"
-        self.currentDate.textColor = .black
-        self.currentDate.layer.borderColor = UIColor.black.cgColor
-        self.currentDate.layer.borderWidth = 1
-        self.currentDate.textAlignment = .center
-        self.currentDate.backgroundColor = .white
-
-        guard let imgLeft = UIImage(systemName: "arrow.left"),
-            let imgRight = UIImage(systemName: "arrow.right") else {
-                fatalError("Could not create arrow images!")
-        }
-
-        let image1 = imgLeft.withTintColor(.blue)
-        let image2 = imgRight.withTintColor(.blue)
-
-        self.leftArrow = UIImageView(image: image1)
-        self.rightArrow = UIImageView(image: image2)
+    
+    func addMacronutrientViews() {
         
-        self.leftArrow.tintColor = .white
-        self.rightArrow.tintColor = .white
-
-        self.calendarView.addSubview(currentDate)
-        self.calendarView.addSubview(self.leftArrow)
-        self.calendarView.addSubview(self.rightArrow)
-
-        self.view.addSubview(self.calendarView)
-
-        [calendarView, currentDate, leftArrow, rightArrow].forEach {
+        //Macronutrient View
+        self.macronutrientCirclesView = UIView()
+        self.macronutrientCirclesView.layer.borderWidth = 1
+        self.contentView.addSubview(self.macronutrientCirclesView)
+        
+        self.macrosLabel = UILabel()
+        self.macrosLabel.text = "Macronutrients"
+        self.macrosLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        self.macronutrientCirclesView.addSubview(self.macrosLabel)
+        
+        //Circles
+        let screenWidth = UIScreen.main.bounds.width
+        let circleRadius = screenWidth / 8
+        let offset: CGFloat = 5.0
+        
+        let centerPointP = CGPoint(x: screenWidth / 2 - circleRadius - offset * 2, y: screenWidth / 2 - circleRadius - offset + 27.5)
+        let centerPointC = CGPoint(x: screenWidth / 2 + circleRadius + offset * 2, y: screenWidth / 2 - circleRadius - offset + 27.5)
+        let centerPointF = CGPoint(x: screenWidth / 2, y: screenWidth / 2 + circleRadius + offset + 27.5)
+        
+        self.proteinCircle = AdaptiveCircle(radius: circleRadius, centerPt: centerPointP, percentComplete: 0.75, borderWidth: 5)
+        self.macronutrientCirclesView.addSubview(self.proteinCircle)
+        
+        self.carbsCircle = AdaptiveCircle(radius: circleRadius, centerPt: centerPointC, percentComplete: 0.75, borderWidth: 5)
+        self.macronutrientCirclesView.addSubview(self.carbsCircle)
+        
+        self.fatsCircle = AdaptiveCircle(radius: circleRadius, centerPt: centerPointF, percentComplete: 0.75, borderWidth: 5)
+        self.macronutrientCirclesView.addSubview(self.fatsCircle)
+        
+        //Setup
+        [self.macronutrientCirclesView, self.macrosLabel].forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false
         }
-
-        // respect safe area
-        let g = view.safeAreaLayoutGuide
-
+        
         NSLayoutConstraint.activate([
-
-            // calendarView to view (safe area) Top / Leading / Trailing
-            //  Height: 60
-            calendarView.topAnchor.constraint(equalTo: g.topAnchor, constant: 0.0),
-            calendarView.leadingAnchor.constraint(equalTo: g.leadingAnchor, constant: 0.0),
-            calendarView.trailingAnchor.constraint(equalTo: g.trailingAnchor, constant: 0.0),
-            calendarView.heightAnchor.constraint(equalToConstant: 60.0),
-
-            // currentDate label to calendarView centerX & centerY
-            //  Width: 1/2 of calendarView width
-            //  Height: 40
-            currentDate.centerXAnchor.constraint(equalTo: calendarView.centerXAnchor),
-            currentDate.centerYAnchor.constraint(equalTo: calendarView.centerYAnchor),
-            currentDate.heightAnchor.constraint(equalToConstant: 40.0),
-            currentDate.widthAnchor.constraint(equalTo: calendarView.widthAnchor, multiplier: 0.5),
-
-            // leftArrow to calendarView Leading: 10 Width: 40 Height: 40 centerY
-            leftArrow.leadingAnchor.constraint(equalTo: calendarView.leadingAnchor, constant: 10.0),
-            leftArrow.widthAnchor.constraint(equalToConstant: 40.0),
-            leftArrow.heightAnchor.constraint(equalToConstant: 40.0),
-            leftArrow.centerYAnchor.constraint(equalTo: calendarView.centerYAnchor),
-
-            // rightArrow to calendarView Trailing: -10 Width: 40 Height: 40 centerY
-            rightArrow.trailingAnchor.constraint(equalTo: calendarView.trailingAnchor, constant: -10.0),
-            rightArrow.widthAnchor.constraint(equalToConstant: 40.0),
-            rightArrow.heightAnchor.constraint(equalToConstant: 40.0),
-            rightArrow.centerYAnchor.constraint(equalTo: calendarView.centerYAnchor),
-
+            //Main macronutrients view
+            self.macronutrientCirclesView.topAnchor.constraint(equalTo: self.caloriesView.bottomAnchor, constant: 0.0),
+            self.macronutrientCirclesView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0.0),
+            self.macronutrientCirclesView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0.0),
+            self.macronutrientCirclesView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 2),
+            
+            //Macros label
+            self.macrosLabel.centerXAnchor.constraint(equalTo: self.macronutrientCirclesView.centerXAnchor),
+            self.macrosLabel.topAnchor.constraint(equalTo: self.macronutrientCirclesView.topAnchor, constant: 15),
+            self.macrosLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-    
     
     func update(circle: AdaptiveCircle, percent: CGFloat, time: CGFloat) {
         do {

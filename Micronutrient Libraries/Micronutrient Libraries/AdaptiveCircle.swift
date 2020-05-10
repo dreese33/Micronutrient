@@ -25,7 +25,7 @@ class AdaptiveCircle: UIView {
         
         let modifiedCenter = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         
-        let innerCirclePath = UIBezierPath(arcCenter: modifiedCenter, radius: radius - 10, startAngle: 0.0, endAngle: CGFloat.pi * 2, clockwise: true)
+        let innerCirclePath = UIBezierPath(arcCenter: modifiedCenter, radius: radius - borderWidth, startAngle: 0.0, endAngle: CGFloat.pi * 2, clockwise: true)
         
         let outerCirclePath = UIBezierPath(arcCenter: modifiedCenter, radius: radius, startAngle: 0.0, endAngle: CGFloat.pi * 2 * percentComplete, clockwise: true)
         
