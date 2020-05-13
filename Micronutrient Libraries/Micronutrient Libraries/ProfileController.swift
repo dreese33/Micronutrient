@@ -80,7 +80,7 @@ class ProfileController: UIViewController {
         self.addCalendarView()
         self.addCaloriesView()
         self.addMacronutrientViews()
-       // self.addFoodsView()
+        self.addFoodsView()
         
         //Finish UI Setup
         self.updateContentSize()
@@ -96,7 +96,7 @@ class ProfileController: UIViewController {
     
     func getCurrentHeight() -> CGFloat {
         var height: CGFloat = 0.0
-        height += UIScreen.main.bounds.width * 3 + 60
+        height += UIScreen.main.bounds.width * 4 + 60
         
         return height
     }
@@ -407,28 +407,51 @@ class ProfileController: UIViewController {
     func addFoodsView() {
         
         //Setup
-        let setupVals = [self.foodsLabel]
         let screenWidth = UIScreen.main.bounds.width
         
+        //Setup foods superview
+        self.foodsSuperView = UIView()
+        self.foodsSuperView.backgroundColor = .white
+        self.foodsSuperView.layer.borderWidth = 1
+        self.contentView.addSubview(self.foodsSuperView)
+        
+        //Setup foods label
+        self.foodsLabel = UILabel()
+        self.foodsLabel.text = "Foods Consumed:"
+        self.foodsLabel.textAlignment = .center
+        self.foodsLabel.font = .boldSystemFont(ofSize: 20)
+        
+        //Setup foods table
+        self.foodsTable = UITableView()
+        self.foodsTable.backgroundView?.backgroundColor = .black
+        
+        self.foodsSuperView.addSubview(self.foodsLabel)
+        self.foodsSuperView.addSubview(self.foodsTable)
+        
+        let setupVals = [self.foodsLabel, self.foodsSuperView, self.foodsTable]
         setupVals.forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        //Setup foods superview
-        self.foodsSuperView = UIView()
-        self.foodsSuperView.backgroundColor = .black
-        
-        self.foodsLabel = UILabel()
-        self.foodsLabel.text = "Foods Consumed:"
-        self.foodsLabel.textAlignment = .center
-        
-        self.contentView.addSubview(self.foodsSuperView)
+        let tableWidth = screenWidth * (2.0 / 3.0)
         
         NSLayoutConstraint.activate([
+            //Foods super view
             self.foodsSuperView.topAnchor.constraint(equalTo: self.macronutrientCirclesView.bottomAnchor, constant: 0.0),
             self.foodsSuperView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             self.foodsSuperView.heightAnchor.constraint(equalToConstant: screenWidth),
-            self.foodsSuperView.widthAnchor.constraint(equalToConstant: screenWidth)
+            self.foodsSuperView.widthAnchor.constraint(equalToConstant: screenWidth),
+            
+            //Foods label
+            self.foodsLabel.heightAnchor.constraint(equalToConstant: 40),
+            self.foodsLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.foodsLabel.topAnchor.constraint(equalTo: self.foodsSuperView.topAnchor, constant: 40),
+            
+            //Foods table
+            self.foodsTable.heightAnchor.constraint(equalToConstant: tableWidth),
+            self.foodsTable.widthAnchor.constraint(equalToConstant: tableWidth),
+            self.foodsTable.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.foodsTable.centerYAnchor.constraint(equalTo: self.foodsSuperView.centerYAnchor, constant: 20)
         ])
     }
     
