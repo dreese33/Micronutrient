@@ -36,6 +36,7 @@ class ProfileController: UIViewController {
     var proteinCircle: AdaptiveCircle!
     var proteinLabel: UILabel!
     var proteinGoal: UILabel!
+    var proteinAmount: UILabel!
     var currentProteinAmount: Int = 0
     var currentProteinGoal: Int = 0
     
@@ -43,6 +44,7 @@ class ProfileController: UIViewController {
     var carbsCircle: AdaptiveCircle!
     var carbsLabel: UILabel!
     var carbsGoal: UILabel!
+    var carbsAmount: UILabel!
     var currentCarbsAmount: Int = 0
     var currentCarbsGoal: Int = 0
     
@@ -50,6 +52,7 @@ class ProfileController: UIViewController {
     var fatsCircle: AdaptiveCircle!
     var fatsLabel: UILabel!
     var fatsGoal: UILabel!
+    var fatsAmount: UILabel!
     var currentFatAmount: Int = 0
     var currentFatGoal: Int = 0
     
@@ -103,11 +106,14 @@ class ProfileController: UIViewController {
     
     
     func addCalendarView() {
+        
         self.calendarView = UIView()
         self.calendarView.backgroundColor = UIColor.init(red: 54.0 / 255.0, green: 157.0 / 255.0, blue: 158.0 / 255.0, alpha: 1)
         self.calendarView.layer.borderColor = UIColor.black.cgColor
         //self.calendarView.layer.borderWidth = 1
 
+        let radiusCorner: CGFloat = 20
+        
         self.currentDate = UILabel()
         self.currentDate.text = "5/6/20"
         self.currentDate.textColor = .black
@@ -115,6 +121,9 @@ class ProfileController: UIViewController {
         self.currentDate.layer.borderWidth = 1
         self.currentDate.textAlignment = .center
         self.currentDate.backgroundColor = .white
+        self.currentDate.layer.cornerRadius = radiusCorner
+        self.currentDate.layer.shadowRadius = radiusCorner
+        self.currentDate.layer.masksToBounds = true
 
         guard let imgLeft = UIImage(systemName: "arrow.left"),
             let imgRight = UIImage(systemName: "arrow.right") else {
@@ -236,7 +245,7 @@ class ProfileController: UIViewController {
         self.macrosLabel.font = UIFont.boldSystemFont(ofSize: 20)
         self.macronutrientCirclesView.addSubview(self.macrosLabel)
         
-        //Circles
+        //Protein, Carbs, and Fats Circles
         let verticalOffset: CGFloat = 60.0
         
         let screenWidth = UIScreen.main.bounds.width
@@ -263,6 +272,10 @@ class ProfileController: UIViewController {
         self.fatsLabel = UILabel()
         self.carbsLabel = UILabel()
         
+        self.proteinAmount = UILabel()
+        self.carbsAmount = UILabel()
+        self.fatsAmount = UILabel()
+        
         self.proteinGoal = UILabel()
         self.fatsGoal = UILabel()
         self.carbsGoal = UILabel()
@@ -281,9 +294,33 @@ class ProfileController: UIViewController {
         self.macronutrientCirclesView.addSubview(self.carbsLabel)
         self.macronutrientCirclesView.addSubview(self.fatsLabel)
         
+        
+        //Protein, Carbs, and Fats amounts
+        self.formatAmountLabel(label: self.proteinAmount)
+        self.formatAmountLabel(label: self.carbsAmount)
+        self.formatAmountLabel(label: self.fatsAmount)
+        
+        self.macronutrientCirclesView.addSubview(self.proteinAmount)
+        self.macronutrientCirclesView.addSubview(self.carbsAmount)
+        self.macronutrientCirclesView.addSubview(self.fatsAmount)
+        
+        //Protein, Carbs, and Fats Goals
+        self.proteinGoal.text = "Protein:\t\t" + String(self.currentProteinAmount) + "/" + String(self.currentProteinGoal) + " g"
+        self.proteinGoal.textAlignment = .center
+        self.fatsGoal.text = "Fats:\t\t\t" + String(self.currentFatAmount) + "/" + String(self.currentFatGoal) + " g"
+        self.fatsGoal.textAlignment = .center
+        self.carbsGoal.text = "Carbs:\t\t\t" + String(self.currentCarbsAmount) + "/" + String(self.currentCarbsGoal) + " g"
+        self.carbsGoal.textAlignment = .center
+        
+        self.macronutrientCirclesView.addSubview(self.proteinGoal)
+        self.macronutrientCirclesView.addSubview(self.fatsGoal)
+        self.macronutrientCirclesView.addSubview(self.carbsGoal)
+        
+        
         //Setup
         let setupVals = [self.macronutrientCirclesView, self.macrosLabel, self.proteinLabel,
-                         self.carbsLabel, self.fatsLabel]
+                         self.carbsLabel, self.fatsLabel, self.proteinAmount, self.carbsAmount,
+                         self.fatsAmount, self.proteinGoal, self.fatsGoal, self.carbsGoal]
         setupVals.forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -314,8 +351,47 @@ class ProfileController: UIViewController {
             //Carbs Label
             self.carbsLabel.heightAnchor.constraint(equalToConstant: 40),
             self.carbsLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            self.carbsLabel.centerYAnchor.constraint(equalTo: self.macronutrientCirclesView.centerYAnchor, constant: -self.carbsCircle.getCircleRadius() + verticalOffset)
+            self.carbsLabel.centerYAnchor.constraint(equalTo: self.macronutrientCirclesView.centerYAnchor, constant: -self.carbsCircle.getCircleRadius() + verticalOffset),
+            
+            //Protein Amount
+            self.proteinAmount.heightAnchor.constraint(equalToConstant: 40),
+            self.proteinAmount.centerXAnchor.constraint(equalTo: self.proteinCircle.centerXAnchor),
+            self.proteinAmount.centerYAnchor.constraint(equalTo: self.proteinCircle.centerYAnchor),
+            
+            //Fats Amount
+            self.fatsAmount.heightAnchor.constraint(equalToConstant: 40),
+            self.fatsAmount.centerXAnchor.constraint(equalTo: self.fatsCircle.centerXAnchor),
+            self.fatsAmount.centerYAnchor.constraint(equalTo: self.fatsCircle.centerYAnchor),
+            
+            //Carbs Amount
+            self.carbsAmount.heightAnchor.constraint(equalToConstant: 40),
+            self.carbsAmount.centerXAnchor.constraint(equalTo: self.carbsCircle.centerXAnchor),
+            self.carbsAmount.centerYAnchor.constraint(equalTo: self.carbsCircle.centerYAnchor),
+            
+            //Protein Goal
+            self.proteinGoal.heightAnchor.constraint(equalToConstant: 40),
+            self.proteinGoal.centerXAnchor.constraint(equalTo: self.macronutrientCirclesView.centerXAnchor),
+            self.proteinGoal.centerYAnchor.constraint(equalTo: self.carbsLabel.centerYAnchor, constant: 100),
+            
+            //Fats Goal
+            self.fatsGoal.heightAnchor.constraint(equalToConstant: 40),
+            self.fatsGoal.centerXAnchor.constraint(equalTo: self.macronutrientCirclesView.centerXAnchor),
+            self.fatsGoal.centerYAnchor.constraint(equalTo: self.proteinGoal.centerYAnchor, constant: 25),
+            
+            //Carbs Goal
+            self.carbsGoal.heightAnchor.constraint(equalToConstant: 40),
+            self.carbsGoal.centerXAnchor.constraint(equalTo: self.macronutrientCirclesView.centerXAnchor),
+            self.carbsGoal.centerYAnchor.constraint(equalTo: self.fatsGoal.centerYAnchor, constant: 25)
         ])
+    }
+    
+    
+    //Pass global label value
+    func formatAmountLabel(label: UILabel) {
+        label.text =  String(self.currentProteinAmount) + " g"
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 14)
+        label.textColor = .systemRed
     }
     
     
