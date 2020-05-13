@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8B21D9022421B7D000B5A67C /* MicronutrientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21D9012421B7D000B5A67C /* MicronutrientController.swift */; };
 		8B2F61B823EA605D00D68742 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2F61B723EA605D00D68742 /* Food.swift */; };
+		8B6504D4246C745B0031389F /* ActiveDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6504D3246C745B0031389F /* ActiveDays.swift */; };
+		8B6504D6246C769C0031389F /* SavedFoods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6504D5246C769C0031389F /* SavedFoods.swift */; };
+		8B6504D8246C79790031389F /* SavedNutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6504D7246C79790031389F /* SavedNutrients.swift */; };
 		8B672C9F2461E718008002E8 /* AdaptiveCircleExceptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B672C9E2461E718008002E8 /* AdaptiveCircleExceptions.swift */; };
 		8B87735523CAA50700FA6EBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87735423CAA50700FA6EBE /* AppDelegate.swift */; };
 		8B87735723CAA50700FA6EBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87735623CAA50700FA6EBE /* SceneDelegate.swift */; };
@@ -54,6 +57,9 @@
 /* Begin PBXFileReference section */
 		8B21D9012421B7D000B5A67C /* MicronutrientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicronutrientController.swift; sourceTree = "<group>"; };
 		8B2F61B723EA605D00D68742 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		8B6504D3246C745B0031389F /* ActiveDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveDays.swift; sourceTree = "<group>"; };
+		8B6504D5246C769C0031389F /* SavedFoods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedFoods.swift; sourceTree = "<group>"; };
+		8B6504D7246C79790031389F /* SavedNutrients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedNutrients.swift; sourceTree = "<group>"; };
 		8B672C9E2461E718008002E8 /* AdaptiveCircleExceptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveCircleExceptions.swift; sourceTree = "<group>"; };
 		8B87735123CAA50700FA6EBE /* Micronutrient Libraries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Micronutrient Libraries.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B87735423CAA50700FA6EBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +149,9 @@
 				8BDC9ABB23E658E10006F89E /* FoodsController.swift */,
 				8B21D9012421B7D000B5A67C /* MicronutrientController.swift */,
 				8BF2A35723F8886000B18921 /* InfoController.swift */,
+				8B6504D3246C745B0031389F /* ActiveDays.swift */,
+				8B6504D5246C769C0031389F /* SavedFoods.swift */,
+				8B6504D7246C79790031389F /* SavedNutrients.swift */,
 				8B8E39FA245E09A7007AA85F /* History.swift */,
 				8B8E39FC245E09F3007AA85F /* Table.swift */,
 				8B2F61B723EA605D00D68742 /* Food.swift */,
@@ -315,7 +324,9 @@
 				8B8E39F7245DE02B007AA85F /* Database.swift in Sources */,
 				8BE4D1782460759C006BBAB5 /* MasterMicronutrientController.swift in Sources */,
 				8B87735523CAA50700FA6EBE /* AppDelegate.swift in Sources */,
+				8B6504D4246C745B0031389F /* ActiveDays.swift in Sources */,
 				8BF2A35823F8886000B18921 /* InfoController.swift in Sources */,
+				8B6504D6246C769C0031389F /* SavedFoods.swift in Sources */,
 				8B94CC42246B81E50057D964 /* FoodsUtility.swift in Sources */,
 				8B21D9022421B7D000B5A67C /* MicronutrientController.swift in Sources */,
 				8B8E39F9245DE681007AA85F /* DatabaseError.swift in Sources */,
@@ -323,6 +334,7 @@
 				8BE8ED4C23F87DEF00A703B1 /* MainTabController.swift in Sources */,
 				8B87735723CAA50700FA6EBE /* SceneDelegate.swift in Sources */,
 				8B8E39FD245E09F3007AA85F /* Table.swift in Sources */,
+				8B6504D8246C79790031389F /* SavedNutrients.swift in Sources */,
 				8B87735F23CAA50700FA6EBE /* Micronutrient_Libraries.xcdatamodeld in Sources */,
 				8BE8ED4A23F87B8500A703B1 /* MainNavigationController.swift in Sources */,
 				8B672C9F2461E718008002E8 /* AdaptiveCircleExceptions.swift in Sources */,
