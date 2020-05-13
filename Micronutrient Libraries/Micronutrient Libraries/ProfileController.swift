@@ -64,6 +64,12 @@ class ProfileController: UIViewController {
     var foodsSuperView: UIView!
     
     
+    //Micronutrients List (change from Food to new Micronutrient class)
+    public static var micronutrientsList: [Food] = []
+    var micronutrientTable: UITableView!
+    var micronutrientLabel: UILabel!
+    var micronutrientSuperView: UIView!
+    
     //Main Scroll View
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -81,6 +87,7 @@ class ProfileController: UIViewController {
         self.addCaloriesView()
         self.addMacronutrientViews()
         self.addFoodsView()
+        self.addMicronutrientsView()
         
         //Finish UI Setup
         self.updateContentSize()
@@ -96,7 +103,7 @@ class ProfileController: UIViewController {
     
     func getCurrentHeight() -> CGFloat {
         var height: CGFloat = 0.0
-        height += UIScreen.main.bounds.width * 4 + 60
+        height += UIScreen.main.bounds.width * 5 + 60
         
         return height
     }
@@ -452,6 +459,58 @@ class ProfileController: UIViewController {
             self.foodsTable.widthAnchor.constraint(equalToConstant: tableWidth),
             self.foodsTable.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             self.foodsTable.centerYAnchor.constraint(equalTo: self.foodsSuperView.centerYAnchor, constant: 20)
+        ])
+    }
+    
+    
+    //Micronutrients View
+    func addMicronutrientsView() {
+        //Setup
+        let screenWidth = UIScreen.main.bounds.width
+        
+        //Setup micronutrients superview
+        self.micronutrientSuperView = UIView()
+        self.micronutrientSuperView.backgroundColor = .white
+        self.micronutrientSuperView.layer.borderWidth = 1
+        self.contentView.addSubview(self.micronutrientSuperView)
+        
+        //Setup micronutrients label
+        self.micronutrientLabel = UILabel()
+        self.micronutrientLabel.text = "Micronutrients:"
+        self.micronutrientLabel.textAlignment = .center
+        self.micronutrientLabel.font = .boldSystemFont(ofSize: 20)
+        
+        //Setup micronutrient table
+        self.micronutrientTable = UITableView()
+        self.micronutrientTable.backgroundView?.backgroundColor = .black
+        
+        self.micronutrientSuperView.addSubview(self.micronutrientLabel)
+        self.micronutrientSuperView.addSubview(self.micronutrientTable)
+        
+        let setupVals = [self.micronutrientTable, self.micronutrientLabel, self.micronutrientSuperView]
+        setupVals.forEach {
+            $0?.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        let tableWidth = screenWidth * (2.0 / 3.0)
+        
+        NSLayoutConstraint.activate([
+            //Foods super view
+            self.micronutrientSuperView.topAnchor.constraint(equalTo: self.foodsSuperView.bottomAnchor, constant: 0.0),
+            self.micronutrientSuperView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.micronutrientSuperView.heightAnchor.constraint(equalToConstant: screenWidth),
+            self.micronutrientSuperView.widthAnchor.constraint(equalToConstant: screenWidth),
+            
+            //Foods label
+            self.micronutrientLabel.heightAnchor.constraint(equalToConstant: 40),
+            self.micronutrientLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.micronutrientLabel.topAnchor.constraint(equalTo: self.micronutrientSuperView.topAnchor, constant: 40),
+            
+            //Foods table
+            self.micronutrientTable.heightAnchor.constraint(equalToConstant: tableWidth),
+            self.micronutrientTable.widthAnchor.constraint(equalToConstant: tableWidth),
+            self.micronutrientTable.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.micronutrientTable.centerYAnchor.constraint(equalTo: self.micronutrientSuperView.centerYAnchor, constant: 20)
         ])
     }
     
