@@ -10,6 +10,9 @@ import UIKit
 
 class ProfileController: UIViewController {
     
+    //Global colors
+    var borderColors: CGColor = UIColor.gray.cgColor
+    
     //Main view
     @IBOutlet weak var contentView: UIView!
     
@@ -124,7 +127,7 @@ class ProfileController: UIViewController {
         
         self.calendarView = UIView()
         self.calendarView.backgroundColor = UIColor.init(red: 54.0 / 255.0, green: 157.0 / 255.0, blue: 158.0 / 255.0, alpha: 1)
-        self.calendarView.layer.borderColor = UIColor.black.cgColor
+        self.calendarView.layer.borderColor = self.borderColors
         //self.calendarView.layer.borderWidth = 1
 
         let radiusCorner: CGFloat = 20
@@ -132,8 +135,8 @@ class ProfileController: UIViewController {
         self.currentDate = UILabel()
         self.currentDate.text = "5/6/20"
         self.currentDate.textColor = .black
-        self.currentDate.layer.borderColor = UIColor.black.cgColor
         self.currentDate.layer.borderWidth = 1
+        self.currentDate.layer.borderColor = self.borderColors
         self.currentDate.textAlignment = .center
         self.currentDate.backgroundColor = .white
         self.currentDate.layer.cornerRadius = radiusCorner
@@ -205,7 +208,7 @@ class ProfileController: UIViewController {
         self.caloriesView = UIView(frame: CGRect(x: 0, y: 60, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
         //self.caloriesView = UIView()
         self.caloriesView.backgroundColor = .white
-        self.caloriesView.layer.borderColor = UIColor.black.cgColor
+        self.caloriesView.layer.borderColor = self.borderColors
         self.caloriesView.layer.borderWidth = 1
          
         self.contentView.addSubview(self.caloriesView!)
@@ -253,6 +256,7 @@ class ProfileController: UIViewController {
         //Macronutrient View
         self.macronutrientCirclesView = UIView()
         self.macronutrientCirclesView.layer.borderWidth = 1
+        self.macronutrientCirclesView.layer.borderColor = self.borderColors
         self.contentView.addSubview(self.macronutrientCirclesView)
         
         self.macrosLabel = UILabel()
@@ -420,6 +424,7 @@ class ProfileController: UIViewController {
         self.foodsSuperView = UIView()
         self.foodsSuperView.backgroundColor = .white
         self.foodsSuperView.layer.borderWidth = 1
+        self.foodsSuperView.layer.borderColor = self.borderColors
         self.contentView.addSubview(self.foodsSuperView)
         
         //Setup foods label
@@ -472,6 +477,7 @@ class ProfileController: UIViewController {
         self.micronutrientSuperView = UIView()
         self.micronutrientSuperView.backgroundColor = .white
         self.micronutrientSuperView.layer.borderWidth = 1
+        self.micronutrientSuperView.layer.borderColor = self.borderColors
         self.contentView.addSubview(self.micronutrientSuperView)
         
         //Setup micronutrients label
