@@ -56,6 +56,13 @@ class ProfileController: UIViewController {
     var currentFatAmount: Int = 0
     var currentFatGoal: Int = 0
     
+
+    //Foods List
+    public static var foodsList: [Food] = []
+    var foodsTable: UITableView!
+    var foodsLabel: UILabel!
+    var foodsSuperView: UIView!
+    
     
     //Main Scroll View
     @IBOutlet weak var scrollView: UIScrollView!
@@ -73,6 +80,7 @@ class ProfileController: UIViewController {
         self.addCalendarView()
         self.addCaloriesView()
         self.addMacronutrientViews()
+       // self.addFoodsView()
         
         //Finish UI Setup
         self.updateContentSize()
@@ -305,11 +313,11 @@ class ProfileController: UIViewController {
         self.macronutrientCirclesView.addSubview(self.fatsAmount)
         
         //Protein, Carbs, and Fats Goals
-        self.proteinGoal.text = "Protein:\t\t" + String(self.currentProteinAmount) + "/" + String(self.currentProteinGoal) + " g"
+        self.proteinGoal.text = "Protein:\t\t" + String(self.currentProteinAmount) + " / " + String(self.currentProteinGoal) + " g"
         self.proteinGoal.textAlignment = .center
-        self.fatsGoal.text = "Fats:\t\t\t" + String(self.currentFatAmount) + "/" + String(self.currentFatGoal) + " g"
+        self.fatsGoal.text = "Fats:\t\t\t" + String(self.currentFatAmount) + " / " + String(self.currentFatGoal) + " g"
         self.fatsGoal.textAlignment = .center
-        self.carbsGoal.text = "Carbs:\t\t\t" + String(self.currentCarbsAmount) + "/" + String(self.currentCarbsGoal) + " g"
+        self.carbsGoal.text = "Carbs:\t\t\t" + String(self.currentCarbsAmount) + " / " + String(self.currentCarbsGoal) + " g"
         self.carbsGoal.textAlignment = .center
         
         self.macronutrientCirclesView.addSubview(self.proteinGoal)
@@ -392,6 +400,36 @@ class ProfileController: UIViewController {
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 14)
         label.textColor = .systemRed
+    }
+    
+    
+    //Foods view
+    func addFoodsView() {
+        
+        //Setup
+        let setupVals = [self.foodsLabel]
+        let screenWidth = UIScreen.main.bounds.width
+        
+        setupVals.forEach {
+            $0?.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        //Setup foods superview
+        self.foodsSuperView = UIView()
+        self.foodsSuperView.backgroundColor = .black
+        
+        self.foodsLabel = UILabel()
+        self.foodsLabel.text = "Foods Consumed:"
+        self.foodsLabel.textAlignment = .center
+        
+        self.contentView.addSubview(self.foodsSuperView)
+        
+        NSLayoutConstraint.activate([
+            self.foodsSuperView.topAnchor.constraint(equalTo: self.macronutrientCirclesView.bottomAnchor, constant: 0.0),
+            self.foodsSuperView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.foodsSuperView.heightAnchor.constraint(equalToConstant: screenWidth),
+            self.foodsSuperView.widthAnchor.constraint(equalToConstant: screenWidth)
+        ])
     }
     
     

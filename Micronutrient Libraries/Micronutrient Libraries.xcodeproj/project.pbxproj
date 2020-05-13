@@ -23,6 +23,7 @@
 		8B8E39FB245E09A7007AA85F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E39FA245E09A7007AA85F /* History.swift */; };
 		8B8E39FD245E09F3007AA85F /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E39FC245E09F3007AA85F /* Table.swift */; };
 		8B9360192460D54E00B4F31B /* AdaptiveCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9360182460D54E00B4F31B /* AdaptiveCircle.swift */; };
+		8B94CC42246B81E50057D964 /* FoodsUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B94CC41246B81E50057D964 /* FoodsUtility.swift */; };
 		8BADC17B2460960200E60AD1 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BADC17A2460960200E60AD1 /* ProfileController.swift */; };
 		8BDC9ABC23E658E10006F89E /* FoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC9ABB23E658E10006F89E /* FoodsController.swift */; };
 		8BDC9ABE23E6596D0006F89E /* FoodsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC9ABD23E6596D0006F89E /* FoodsApi.swift */; };
@@ -73,6 +74,7 @@
 		8B8E39FA245E09A7007AA85F /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		8B8E39FC245E09F3007AA85F /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		8B9360182460D54E00B4F31B /* AdaptiveCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveCircle.swift; sourceTree = "<group>"; };
+		8B94CC41246B81E50057D964 /* FoodsUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodsUtility.swift; sourceTree = "<group>"; };
 		8BADC17A2460960200E60AD1 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		8BDC9ABB23E658E10006F89E /* FoodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodsController.swift; sourceTree = "<group>"; };
 		8BDC9ABD23E6596D0006F89E /* FoodsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodsApi.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				8B8E39FA245E09A7007AA85F /* History.swift */,
 				8B8E39FC245E09F3007AA85F /* Table.swift */,
 				8B2F61B723EA605D00D68742 /* Food.swift */,
+				8B94CC41246B81E50057D964 /* FoodsUtility.swift */,
 				8BDC9ABD23E6596D0006F89E /* FoodsApi.swift */,
 				8B87735A23CAA50700FA6EBE /* Main.storyboard */,
 				8BADC17A2460960200E60AD1 /* ProfileController.swift */,
@@ -313,6 +316,7 @@
 				8BE4D1782460759C006BBAB5 /* MasterMicronutrientController.swift in Sources */,
 				8B87735523CAA50700FA6EBE /* AppDelegate.swift in Sources */,
 				8BF2A35823F8886000B18921 /* InfoController.swift in Sources */,
+				8B94CC42246B81E50057D964 /* FoodsUtility.swift in Sources */,
 				8B21D9022421B7D000B5A67C /* MicronutrientController.swift in Sources */,
 				8B8E39F9245DE681007AA85F /* DatabaseError.swift in Sources */,
 				8BADC17B2460960200E60AD1 /* ProfileController.swift in Sources */,
