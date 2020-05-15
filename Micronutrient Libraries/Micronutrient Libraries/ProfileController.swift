@@ -530,4 +530,50 @@ class ProfileController: UIViewController {
             print("other")
         }
     }
+    
+    
+    //Database functions
+    func getActiveDays() {
+        if let dbase = FoodsController.database {
+            var activeDays: [String] = []
+            do {
+                try activeDays = dbase.getActiveDays()
+                for day in activeDays {
+                    print(day)
+                }
+            } catch {
+                print(dbase.errorMessage)
+            }
+        }
+    }
+    
+    
+    func getSavedFoods() {
+        if let dbase = FoodsController.database {
+            var foods: [SavedFoods] = []
+            do {
+                try foods = dbase.getSavedFoods()
+                for food in foods {
+                    print(food.date, food.description, String(food.fdcId), String(food.foodId))
+                }
+            } catch {
+                print(dbase.errorMessage)
+            }
+        }
+    }
+    
+    
+    func getSavedNutrients() {
+        if let dbase = FoodsController.database {
+            var nutrients: [SavedNutrients] = []
+            do {
+                try nutrients = dbase.getSavedNutrients()
+                for nutrient in nutrients {
+                    print(nutrient.amount, String(nutrient.foodId), String(nutrient.id), nutrient.insertSql)
+                }
+            } catch {
+                print(dbase.errorMessage)
+            }
+        }
+    }
 }

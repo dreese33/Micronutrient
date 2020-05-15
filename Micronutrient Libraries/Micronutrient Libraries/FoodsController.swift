@@ -296,6 +296,7 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     }
     
     
+    //Test function do not use
     func queryGeneric(table: Table.Type) {
         if let dbase = FoodsController.database {
             do {
@@ -348,6 +349,4 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
             }
         }
     }
-    
-    
 }
