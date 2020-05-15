@@ -108,8 +108,8 @@ class Database {
         print("Successfully inserted row.")
     }
     
-    //Generic Query Function -- Test function, do not use
-    func queryGeneric(query: String, params: [Any]? = nil) throws {
+    //Generic Query Function -- Test function, do not use in functional code
+    func queryGeneric(query: String, params: [Any]? = nil) throws -> [Any] {
         let queryStatement = try prepareStatement(sql: query)
         defer {
             sqlite3_finalize(queryStatement)
@@ -141,16 +141,13 @@ class Database {
             }
         }
         
-        guard sqlite3_step(queryStatement) == SQLITE_ROW else {
-            throw DatabaseError.Step(message: errorMessage)
+        let genericObject: [Any] = []
+        
+        while sqlite3_step(queryStatement) == SQLITE_ROW {
+            //Needs implementation
         }
         
-        guard let results = sqlite3_column_text(queryStatement, 1) else {
-            print("Error")
-            return
-        }
-        
-        print("Query completing " + String(cString: results))
+        return genericObject
     }
     
     
@@ -186,7 +183,7 @@ class Database {
     }
     
     
-    //Gets all rows from history table
+    //Gets all rows from History table
     func getHistory() throws -> [History] {
         
         let query = """
@@ -207,7 +204,7 @@ class Database {
         return rows
     }
     
-    //Gets most recent 50 items from history
+    //Gets most recent 50 items from History table
     func getRecentHistory() throws -> [History] {
         
         let query = """
@@ -226,5 +223,75 @@ class Database {
         }
         
         return rows
+    }
+    
+    
+    //Gets values from ActiveDays table
+    func getActiveDays() throws -> [String] {
+        
+        let query = """
+            SELECT * FROM ActiveDays
+        """
+        let queryStatement = try prepareStatement(sql: query)
+        defer {
+            sqlite3_finalize(queryStatement)
+        }
+        
+        var dates: [String] = []
+        while sqlite3_step(queryStatement) == SQLITE_ROW {
+            let day = String(cString: sqlite3_column_text(queryStatement, 0))
+            dates.append(day)
+        }
+        
+        return dates
+        
+    }
+    
+    
+    //Gets values from SavedFoods table
+    func getSavedFoods() throws -> [SavedFoods] {
+        
+        let query = """
+            SELECT * FROM SavedFoods
+        """
+        let queryStatement = try prepareStatement(sql: query)
+        defer {
+            sqlite3_finalize(queryStatement)
+        }
+        
+        var foods: [SavedFoods] = []
+        while sqlite3_step(queryStatement) == SQLITE_ROW {
+            let foodId = Int(sqlite3_column_int(queryStatement, 0))
+            let date = String(cString: sqlite3_column_text(queryStatement, 1))
+            let fdcId = Int(sqlite3_column_int(queryStatement, 2))
+            let description = String(cString: sqlite3_column_text(queryStatement, 3))
+            foods.append(SavedFoods(foodId: foodId, date: date, fdcId: fdcId, description: description))
+        }
+        
+        return foods
+    }
+    
+    
+    //Gets values from SavedNutrients table
+    func getSavedNutrients() throws -> [SavedNutrients] {
+        
+        let query = """
+            SELECT * FROM SavedNutrients
+        """
+        let queryStatement = try prepareStatement(sql: query)
+        defer {
+            sqlite3_finalize(queryStatement)
+        }
+        
+        var nutrients: [SavedNutrients] = []
+        while sqlite3_step(queryStatement) == SQLITE_ROW {
+            let id = Int(sqlite3_column_int(queryStatement, 0))
+            let foodId = Int(sqlite3_column_int(queryStatement, 1))
+            let name = String(cString: sqlite3_column_text(queryStatement, 2))
+            let amount = String(cString: sqlite3_column_text(queryStatement, 3))
+            nutrients.append(SavedNutrients(id: id, foodId: foodId, name: name, amount: amount))
+        }
+        
+        return nutrients
     }
 }
