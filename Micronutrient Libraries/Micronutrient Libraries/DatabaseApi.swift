@@ -121,7 +121,7 @@ class DatabaseApi {
     }
     
     
-    func getActiveDays() {
+    static func getActiveDays() {
         if let dbase = AppDelegate.database {
             var activeDays: [String] = []
             do {
@@ -136,7 +136,7 @@ class DatabaseApi {
     }
     
     
-    func getSavedFoods() {
+    static func getSavedFoods() {
         if let dbase = AppDelegate.database {
             var foods: [SavedFoods] = []
             do {
@@ -151,7 +151,7 @@ class DatabaseApi {
     }
     
     
-    func getSavedNutrients() {
+    static func getSavedNutrients() {
         if let dbase = AppDelegate.database {
             var nutrients: [SavedNutrients] = []
             do {

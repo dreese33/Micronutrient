@@ -12,7 +12,12 @@ final class MasterMicronutrientController: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
     
-    @IBAction func saveFood(_ sender: Any) {
+    @IBAction func saveFoods(_ sender: UIButton) {
+        print("Saving")
+        
+        
+        
+        print("Saved")
     }
     
     

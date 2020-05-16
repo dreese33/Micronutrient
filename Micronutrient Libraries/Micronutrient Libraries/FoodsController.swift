@@ -23,7 +23,7 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
     static var searchState: Int = 0
     private var duplicateSearch: Bool = false
     
-    static var listOfFoodsArray: [String] = ["Fruits", "Vegetables", "Breads"]
+    private static var listOfFoodsArray: [String] = ["Fruits", "Vegetables", "Breads"]
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
@@ -188,7 +188,7 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
      * Table cell clicked - opens micronutrient information
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MicronutrientController.micronutrients = foodsArray![indexPath.row].micronutrients
+        MicronutrientController.currentFood = foodsArray![indexPath.row]
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -208,7 +208,7 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         case 2:
             //Search results displayed
             print("Search result clicked")
-            MicronutrientController.micronutrients = foodsArray![indexPath.row].micronutrients
+            MicronutrientController.currentFood = foodsArray![indexPath.row]
             
             let infoViewController = storyboard?.instantiateViewController(withIdentifier: "MasterMicronutrientController") as! MasterMicronutrientController
             infoViewController.modalPresentationStyle = .overCurrentContext

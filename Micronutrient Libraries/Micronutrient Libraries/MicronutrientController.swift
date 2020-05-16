@@ -10,7 +10,8 @@ import UIKit
 
 class MicronutrientController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    public static var micronutrients: Dictionary<String, String>?
+    //public static var micronutrients: Dictionary<String, String>?
+    public static var currentFood: Food?
     private var values: [String]?
     
     //TableView component
@@ -28,8 +29,8 @@ class MicronutrientController: UIViewController, UITableViewDelegate, UITableVie
         case 1:
             print("Searching for history value")
         case 2:
-            if let micronutrients = MicronutrientController.micronutrients {
-                for micronutrient in micronutrients {
+            if let food = MicronutrientController.currentFood {
+                for micronutrient in food.micronutrients {
                     values!.append(micronutrient.key + "        " + micronutrient.value)
                     print(values![i])
                     i += 1

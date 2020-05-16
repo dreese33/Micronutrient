@@ -199,7 +199,7 @@
                                 </constraints>
                                 <state key="normal" title="Save Food"/>
                                 <connections>
-                                    <action selector="saveFood:" destination="ojB-iC-3NV" eventType="touchUpInside" id="vAo-Am-Y5i"/>
+                                    <action selector="saveFoods:" destination="z0g-rJ-ZH8" eventType="touchUpInside" id="ShL-b3-RbA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -221,7 +221,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vD0-27-ejs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="ojB-iC-3NV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3270" y="840"/>
         </scene>
