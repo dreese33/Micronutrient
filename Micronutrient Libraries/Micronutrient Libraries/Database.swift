@@ -88,6 +88,39 @@ class Database {
         print("\(table) table created.")
     }
     
+    
+    func getAllExistingTables() throws -> [String] {
+        var tables: [String] = []
+        let statementString = "SELECT name FROM sqlite_master WHERE type='table';"
+        let checkTableExistsStatement = try prepareStatement(sql: statementString)
+        
+        defer {
+            sqlite3_finalize(checkTableExistsStatement)
+        }
+        
+        while sqlite3_step(checkTableExistsStatement) == SQLITE_ROW {
+            let table = String(cString: sqlite3_column_text(checkTableExistsStatement, 0))
+            tables.append(table)
+        }
+        
+        return tables
+    }
+    
+    
+    //Check if table exists
+    /*
+    func checkTableExists(table: Table.Type) throws {
+        let statementString = "SELECT name FROM sqlite_master WHERE type='table' AND name='{\(table.name)}';"
+        let checkTableExistsStatement = try prepareStatement(sql: statementString)
+        
+        defer {
+            sqlite3_finalize(checkTableExistsStatement)
+        }
+        
+        
+    }*/
+    
+    
     //Insert into table
     func insert(table: Table) throws {
         let insertStatement = try prepareStatement(sql: table.insertSql)

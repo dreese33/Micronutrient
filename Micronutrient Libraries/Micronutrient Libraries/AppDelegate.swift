@@ -20,6 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Connecting to database
         DatabaseApi.openDatabase()
         
+        
+        //Ensure database tables have been created
+        
+        //DatabaseApi.createTable(table: History.self)
+        
+        let tables: [String] = DatabaseApi.getAllExistingTables()
+        for table in tables {
+            print(table)
+        }
+        
         return true
     }
 

@@ -56,16 +56,9 @@ class FoodsController: UIViewController, UISearchBarDelegate, UINavigationContro
         if self.searchBar.text!.count > 1 && !self.duplicateSearch {
             
             //Append searchHistory and add to database
+            
             let text = self.searchBar.text!
             FoodsController.searchHistory.append(text)
-            
-            if let dbase = AppDelegate.database {
-                do {
-                    try dbase.insert(table: History(id: -1, entry: text))
-                } catch {
-                    print(dbase.errorMessage)
-                }
-            }
         } else {
             self.duplicateSearch = false
         }

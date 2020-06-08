@@ -44,6 +44,29 @@ class DatabaseApi {
     }
     
     
+    static func getAllExistingTables() -> [String] {
+        var tables: [String] = []
+        if let dbase = AppDelegate.database {
+            do {
+                tables = try dbase.getAllExistingTables()
+            } catch {
+                print("Error occurred obtaining existing tables")
+            }
+        }
+        
+        return tables
+    }
+    
+    /*
+    static func checkTableExists(table: Table.Type) -> Bool {
+        if let dbase = AppDelegate.database {
+            
+        }
+        
+        return false
+    }*/
+    
+    
     static func createTable(table: Table.Type) {
         if let dbase = AppDelegate.database {
             do {
