@@ -12,6 +12,7 @@ import SQLite3
 class Database {
     
     private let dbPointer: OpaquePointer?
+    private let tablesNecessary: [Table.Type] = [History.self, SavedFoods.self, SavedNutrients.self, ActiveDays.self]
     
     private init(dbPointer: OpaquePointer?) {
         self.dbPointer = dbPointer
@@ -86,6 +87,19 @@ class Database {
         }
         
         print("\(table) table created.")
+    }
+    
+    //Create necessary tables
+    func createNecessaryTables(existingTables: [String]) throws -> [String] {
+        var newTables: [String] = []
+        for table in self.tablesNecessary {
+            if !existingTables.contains(table.name) {
+                try self.createTable(table: table)
+                newTables.append(table.name)
+            }
+        }
+        
+        return newTables
     }
     
     

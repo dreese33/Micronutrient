@@ -57,6 +57,21 @@ class DatabaseApi {
         return tables
     }
     
+    
+    static func createNecessaryTables(existingTables: [String]) -> [String] {
+        var newTables: [String] = []
+        if let dbase = AppDelegate.database {
+            do {
+                newTables = try dbase.createNecessaryTables(existingTables: existingTables)
+            } catch {
+                print("Error occurred creating necessary tables")
+            }
+        }
+        
+        return newTables
+    }
+    
+    
     /*
     static func checkTableExists(table: Table.Type) -> Bool {
         if let dbase = AppDelegate.database {

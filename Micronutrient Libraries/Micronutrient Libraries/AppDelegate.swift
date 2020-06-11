@@ -23,11 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Ensure database tables have been created
         
-        //DatabaseApi.createTable(table: History.self)
-        
         let tables: [String] = DatabaseApi.getAllExistingTables()
-        for table in tables {
-            print(table)
+        let createdTables: [String] = DatabaseApi.createNecessaryTables(existingTables: tables)
+        if createdTables.count > 0 {
+            print("New tables created:")
+            print(createdTables)
         }
         
         return true
