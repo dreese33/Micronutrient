@@ -22,9 +22,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         //Ensure database tables have been created
+
+        /* Drop all tables
+        let tables: [Table.Type] = DatabaseApi.getAllExistingTables()
+        for table in tables {
+            DatabaseApi.dropTable(table: table)
+        }*/
         
-        let tables: [String] = DatabaseApi.getAllExistingTables()
-        let createdTables: [String] = DatabaseApi.createNecessaryTables(existingTables: tables)
+        let tables: [Table.Type] = DatabaseApi.getAllExistingTables()
+        var tableNames: [String] = []
+        for table in tables {
+            tableNames.append(table.name)
+        }
+        
+        let createdTables: [Table.Type] = DatabaseApi.createNecessaryTables(existingTables: tableNames)
         if createdTables.count > 0 {
             print("New tables created:")
             print(createdTables)

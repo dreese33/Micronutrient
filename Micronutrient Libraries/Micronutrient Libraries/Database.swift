@@ -90,12 +90,12 @@ class Database {
     }
     
     //Create necessary tables
-    func createNecessaryTables(existingTables: [String]) throws -> [String] {
-        var newTables: [String] = []
+    func createNecessaryTables(existingTables: [String]) throws -> [Table.Type] {
+        var newTables: [Table.Type] = []
         for table in self.tablesNecessary {
             if !existingTables.contains(table.name) {
                 try self.createTable(table: table)
-                newTables.append(table.name)
+                newTables.append(table.self)
             }
         }
         
@@ -103,8 +103,8 @@ class Database {
     }
     
     
-    func getAllExistingTables() throws -> [String] {
-        var tables: [String] = []
+    func getAllExistingTables() throws -> [Table.Type] {
+        var tables: [Table.Type] = []
         let statementString = "SELECT name FROM sqlite_master WHERE type='table';"
         let checkTableExistsStatement = try prepareStatement(sql: statementString)
         
@@ -114,7 +114,11 @@ class Database {
         
         while sqlite3_step(checkTableExistsStatement) == SQLITE_ROW {
             let table = String(cString: sqlite3_column_text(checkTableExistsStatement, 0))
-            tables.append(table)
+            for theTable in self.tablesNecessary {
+                if theTable.name == table {
+                    tables.append(theTable.self)
+                }
+            }
         }
         
         return tables
@@ -310,9 +314,11 @@ class Database {
         while sqlite3_step(queryStatement) == SQLITE_ROW {
             let foodId = Int(sqlite3_column_int(queryStatement, 0))
             let date = String(cString: sqlite3_column_text(queryStatement, 1))
-            let fdcId = Int(sqlite3_column_int(queryStatement, 2))
-            let description = String(cString: sqlite3_column_text(queryStatement, 3))
-            foods.append(SavedFoods(foodId: foodId, date: date, fdcId: fdcId, description: description))
+            let time = String(cString: sqlite3_column_text(queryStatement, 2))
+            let fdcId = Int(sqlite3_column_int(queryStatement, 3))
+            let description = String(cString: sqlite3_column_text(queryStatement, 4))
+            let amountFactor = Double(sqlite3_column_double(queryStatement, 5))
+            foods.append(SavedFoods(foodId: foodId, date: date, time: time, fdcId: fdcId, description: description, amountFactor: amountFactor))
         }
         
         return foods
@@ -333,10 +339,10 @@ class Database {
         var nutrients: [SavedNutrients] = []
         while sqlite3_step(queryStatement) == SQLITE_ROW {
             let id = Int(sqlite3_column_int(queryStatement, 0))
-            let foodId = Int(sqlite3_column_int(queryStatement, 1))
+            let fdcId = Int(sqlite3_column_int(queryStatement, 1))
             let name = String(cString: sqlite3_column_text(queryStatement, 2))
             let amount = String(cString: sqlite3_column_text(queryStatement, 3))
-            nutrients.append(SavedNutrients(id: id, foodId: foodId, name: name, amount: amount))
+            nutrients.append(SavedNutrients(id: id, fdcId: fdcId, name: name, amount: amount))
         }
         
         return nutrients

@@ -6,16 +6,20 @@
 //  Copyright © 2020 ReeseGames. All rights reserved.
 //
 
+//Note: This class is no longer needed, the table SavedNutrients has
+//      been replaced with the SavedFoods attribute `nutrients`
+//
+
 import SQLite3
 
 struct SavedNutrients: Table {
     static var createStatement: String {
         return """
         CREATE TABLE SavedNutrients(
-            id INTEGER PRIMARY KEY,
-            foodId INTEGER,
+            fdcId INTEGER,
             name TEXT,
-            amount TEXT
+            amount TEXT,
+            PRIMARY KEY(fdcId, name)
         );
         """
     }
@@ -26,7 +30,7 @@ struct SavedNutrients: Table {
     
     var insertSql: String {
         return """
-        INSERT INTO \(SavedNutrients.name) (date, fdcId, description) VALUES (\'\(foodId)\', (\'\(name)\'), (\'\(amount)\'))
+        REPLACE INTO \(SavedNutrients.name) (date, fdcId, description) VALUES (\'\(fdcId)\', (\'\(name)\'), (\'\(amount)\'))
         """
     }
     
@@ -39,7 +43,7 @@ struct SavedNutrients: Table {
     }
     
     func bindStatements(insertStatement: OpaquePointer?, database: Database) throws {
-        guard sqlite3_bind_int(insertStatement, 1, Int32(self.foodId)) == SQLITE_OK
+        guard sqlite3_bind_int(insertStatement, 1, Int32(self.fdcId)) == SQLITE_OK
             else {
                 throw DatabaseError.Bind(message: database.errorMessage)
         }
@@ -56,7 +60,7 @@ struct SavedNutrients: Table {
     }
     
     var id: Int
-    var foodId: Int
+    var fdcId: Int
     var name: String
     var amount: String
 }

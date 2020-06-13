@@ -44,8 +44,8 @@ class DatabaseApi {
     }
     
     
-    static func getAllExistingTables() -> [String] {
-        var tables: [String] = []
+    static func getAllExistingTables() -> [Table.Type] {
+        var tables: [Table.Type] = []
         if let dbase = AppDelegate.database {
             do {
                 tables = try dbase.getAllExistingTables()
@@ -58,8 +58,8 @@ class DatabaseApi {
     }
     
     
-    static func createNecessaryTables(existingTables: [String]) -> [String] {
-        var newTables: [String] = []
+    static func createNecessaryTables(existingTables: [String]) -> [Table.Type] {
+        var newTables: [Table.Type] = []
         if let dbase = AppDelegate.database {
             do {
                 newTables = try dbase.createNecessaryTables(existingTables: existingTables)
@@ -195,7 +195,7 @@ class DatabaseApi {
             do {
                 try nutrients = dbase.getSavedNutrients()
                 for nutrient in nutrients {
-                    print(nutrient.amount, String(nutrient.foodId), String(nutrient.id), nutrient.insertSql)
+                    print(nutrient.amount, String(nutrient.fdcId), String(nutrient.id), nutrient.insertSql)
                 }
             } catch {
                 print(dbase.errorMessage)

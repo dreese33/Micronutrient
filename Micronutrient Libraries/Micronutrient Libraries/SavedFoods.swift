@@ -14,8 +14,10 @@ struct SavedFoods: Table {
         CREATE TABLE SavedFoods(
             foodId INTEGER PRIMARY KEY,
             date TEXT,
+            time TEXT,
             fdcId INTEGER,
-            description TEXT
+            description TEXT,
+            amountFactor REAL
         );
         """
     }
@@ -26,7 +28,7 @@ struct SavedFoods: Table {
     
     var insertSql: String {
         return """
-        INSERT INTO \(SavedFoods.name) (date, fdcId, description) VALUES (\'\(date)\', (\'\(fdcId)\'), (\'\(description)\'))
+        INSERT INTO \(SavedFoods.name) (date, time, fdcId, description, amountFactor) VALUES (\'\(date)\', (\'\(time)\'), (\'\(fdcId)\'), (\'\(description)\'), (\'\(amountFactor)\'))
         """
     }
     
@@ -44,12 +46,22 @@ struct SavedFoods: Table {
                 throw DatabaseError.Bind(message: database.errorMessage)
         }
         
-        guard sqlite3_bind_int(insertStatement, 2, Int32(self.fdcId)) == SQLITE_OK
+        guard sqlite3_bind_text(insertStatement, 2, self.time, -1, nil) == SQLITE_OK
             else {
                 throw DatabaseError.Bind(message: database.errorMessage)
         }
         
-        guard sqlite3_bind_text(insertStatement, 3, self.description, -1, nil) == SQLITE_OK
+        guard sqlite3_bind_int(insertStatement, 3, Int32(self.fdcId)) == SQLITE_OK
+            else {
+                throw DatabaseError.Bind(message: database.errorMessage)
+        }
+        
+        guard sqlite3_bind_text(insertStatement, 4, self.description, -1, nil) == SQLITE_OK
+            else {
+                throw DatabaseError.Bind(message: database.errorMessage)
+        }
+        
+        guard sqlite3_bind_double(insertStatement, 5, self.amountFactor) == SQLITE_OK
             else {
                 throw DatabaseError.Bind(message: database.errorMessage)
         }
@@ -57,6 +69,8 @@ struct SavedFoods: Table {
     
     var foodId: Int
     var date: String
+    var time: String
     var fdcId: Int
     var description: String
+    var amountFactor: Double
 }
