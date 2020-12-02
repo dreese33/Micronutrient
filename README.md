@@ -14,6 +14,6 @@
 - iOS 13.4+
 - Xcode 12.2
 
-[link to app screenshot](/screenshots/macros.png?raw=true "Micronutrient App Screenshot")
-[link to app screenshot](/screenshots/search.png?raw=true "Micronutrient App Screenshot")
-[link to app screenshot](/screenshots/micros.png?raw=true "Micronutrient App Screenshot")
+![Image of Macronutrients](/screenshots/macros.png?raw=true "Micronutrient App Screenshot")
+![Image of Search Functionality](/screenshots/search.png?raw=true "Micronutrient App Screenshot")
+![Image of Micronutrients](/screenshots/micros.png?raw=true "Micronutrient App Screenshot")
